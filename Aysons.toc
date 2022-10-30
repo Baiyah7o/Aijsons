@@ -1,0 +1,9 @@
+## Interface: 100000
+## Version 1.0 
+## Title: Aysons
+## DefaultState: Enable
+
+Libs\LibStub\LibStub.lua
+
+core.lua
+assets.lua
