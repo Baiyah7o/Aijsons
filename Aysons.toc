@@ -1,9 +1,9 @@
 ## Interface: 100000
 ## Title: Aysons
-## Notes: Personal settings and macros
-## DefaultState: Enable
-## Author:  Baiyah7o
 ## Version: @project-version@
+## Notes: Personal settings and macros
+## Author:  Baiyah7o
+
 ## DefaultState: enabled
 
 Libs\LibStub\LibStub.lua
