@@ -21,9 +21,9 @@
 
 SetCVar("CameraKeepCharacterCentered", 0)
 SetCVar("test_cameraDynamicPitch", 1)
-SetCVar("test_cameraDynamicPitchBaseFovPad", 0.45)
-SetCVar("test_cameraDynamicPitchBaseFovPadDownScale", 0.45)
-SetCVar("test_cameraDynamicPitchBaseFovPadFlying", 0.45)
+SetCVar("test_cameraDynamicPitchBaseFovPad", 0.55)
+SetCVar("test_cameraDynamicPitchBaseFovPadDownScale", 0.55)
+SetCVar("test_cameraDynamicPitchBaseFovPadFlying", 0.55)
 
 
 -- Script Errors
