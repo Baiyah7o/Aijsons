@@ -10,6 +10,8 @@ while read -r LINES; do
 	fi;
 done <$FILENAME 
 
+echo -e "Set volume up for all mp3 files."
+mp3gain -r -k -d 12  ./mp3/*.mp3
 
 dir2ogg -Q -q 10 -r ./mp3
 
