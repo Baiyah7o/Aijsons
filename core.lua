@@ -76,9 +76,12 @@ local function GetStatsDistrib()
         MyStatsText =  MyStatsText .. '\nItem level increases intellect and stamina. When at the same item level the priority should be:\n\n'
         MyStatsText =  MyStatsText .. "Intellect (" .. UnitStat("player",4)                       .. ") > "
         MyStatsText =  MyStatsText .. "Haste ("     .. GetCombatRating(CR_HASTE_SPELL)             .. ") > "
+        MyStatsText =  MyStatsText .. "Mastery ("   .. GetCombatRating(CR_MASTERY)                 .. ") => "
         MyStatsText =  MyStatsText .. "Crit ("      .. GetCombatRating(CR_CRIT_SPELL)              .. ") > "
-        MyStatsText =  MyStatsText .. "Mastery ("   .. GetCombatRating(CR_MASTERY)                 .. ") > "
-        MyStatsText =  MyStatsText .. "Vers ("      .. GetCombatRating(CR_VERSATILITY_DAMAGE_DONE) .. ")\n "
+        MyStatsText =  MyStatsText .. "Vers ("      .. GetCombatRating(CR_VERSATILITY_DAMAGE_DONE) .. ")\n"
+        MyStatsText =  MyStatsText .. "\nAbove stats for " .. class .. " shown ordered according to:\n" 
+        MyStatsText =  MyStatsText .. " - https://www.wowhead.com/guide/classes/warlock/destruction/stat-priority-pve-dps\n" 
+        MyStatsText =  MyStatsText .. " - https://www.method.gg/guides/destruction-warlock/stats-races-and-consumables\n" 
     elseif id == 70 then
         -- Retribution Paladin, Mastery > Haste = Versatility > Crit
         MyStatsText =  MyStatsText .. class .. ' (Retribution Paladin, ID ' .. id ..')\n'
@@ -87,6 +90,9 @@ local function GetStatsDistrib()
         MyStatsText =  MyStatsText .. "Haste ("     .. GetCombatRating(CR_HASTE_SPELL)             .. ") = "
         MyStatsText =  MyStatsText .. "Vers ("      .. GetCombatRating(CR_VERSATILITY_DAMAGE_DONE) .. ") > "
         MyStatsText =  MyStatsText .. "Crit ("      .. GetCombatRating(CR_CRIT_SPELL)              .. ")\n "
+        MyStatsText =  MyStatsText .. "\nAbove stats for " .. class .. " shown ordered according to:\n" 
+        MyStatsText =  MyStatsText .. " - https://www.wowhead.com/guide/classes/paladin/retribution/stat-priority-pve-dps\n" 
+        MyStatsText =  MyStatsText .. " - https://www.method.gg/guides/retribution-paladin/stats-races-and-consumables\n" 
     elseif id == 104 then
         -- Guardian Druid, Versatility > Mastery >= Haste > Crit
         MyStatsText =  MyStatsText .. class .. ' (Guardian Druid, ID ' .. id ..')\n'
@@ -95,6 +101,9 @@ local function GetStatsDistrib()
         MyStatsText =  MyStatsText .. "Mastery ("   .. GetCombatRating(CR_MASTERY)                 .. ") ≥ "
         MyStatsText =  MyStatsText .. "Haste ("     .. GetCombatRating(CR_HASTE_SPELL)             .. ") > "
         MyStatsText =  MyStatsText .. "Crit ("      .. GetCombatRating(CR_CRIT_SPELL)              .. ")\n "
+        MyStatsText =  MyStatsText .. "\nAbove stats for " .. class .. " shown ordered according to:\n" 
+        MyStatsText =  MyStatsText .. " - https://www.wowhead.com/guide/classes/druid/guardian/stat-priority-pve-tank\n" 
+        MyStatsText =  MyStatsText .. " - https://www.method.gg/guides/guardian-druid/stats-races-and-consumables\n" 
     elseif id == 105 then
         -- Restoration Druid, Versatility > Mastery >= Haste > Crit
         MyStatsText =  MyStatsText .. class .. ' (Restoration Druid, for raiding:, ID ' .. id ..')\n'
@@ -109,6 +118,9 @@ local function GetStatsDistrib()
         MyStatsText =  MyStatsText .. "Haste ("     .. GetCombatRating(CR_HASTE_SPELL)             .. ") > "
         MyStatsText =  MyStatsText .. "Crit ("      .. GetCombatRating(CR_CRIT_SPELL)              .. ") > "
         MyStatsText =  MyStatsText .. "Vers ("      .. GetCombatRating(CR_VERSATILITY_DAMAGE_DONE) .. ") \n"
+        MyStatsText =  MyStatsText .. "\nAbove stats for " .. class .. " shown ordered according to:\n" 
+        MyStatsText =  MyStatsText .. " - https://www.wowhead.com/guide/classes/druid/restoration/stat-priority-pve-healer\n" 
+        MyStatsText =  MyStatsText .. " - https://www.method.gg/guides/restoration-druid/stats-races-and-consumables\n" 
     elseif id == 250 then
         -- Death Knight - Blood, Haste > Versatility > Critical Strike > Mastery
         MyStatsText =  MyStatsText .. class .. ' (Blood Death Knight, ID ' .. id ..')\n'
@@ -117,6 +129,9 @@ local function GetStatsDistrib()
         MyStatsText =  MyStatsText .. "Vers ("      .. GetCombatRating(CR_VERSATILITY_DAMAGE_DONE) .. ") > "
         MyStatsText =  MyStatsText .. "Crit ("      .. GetCombatRating(CR_CRIT_SPELL)              .. ") > "
         MyStatsText =  MyStatsText .. "Mastery ("   .. GetCombatRating(CR_MASTERY)                 .. ")\n "
+        MyStatsText =  MyStatsText .. "\nAbove stats for " .. class .. " shown ordered according to:\n" 
+        MyStatsText =  MyStatsText .. " - https://www.wowhead.com/guide/classes/death-knight/blood/stat-priority-pve-tank\n" 
+        MyStatsText =  MyStatsText .. " - https://www.method.gg/guides/blood-death-knight/stats-races-and-consumables\n" 
     elseif id == 253 then
         -- Beats Mastery Hunter, Critical Strike > Haste > Versatility > Mastery
         MyStatsText =  MyStatsText .. class .. ' (Beats Mastery Hunter, ID ' .. id ..')\n'
@@ -125,6 +140,9 @@ local function GetStatsDistrib()
         MyStatsText =  MyStatsText .. "Haste ("     .. GetCombatRating(CR_HASTE_SPELL)             .. ") > "
         MyStatsText =  MyStatsText .. "Vers ("      .. GetCombatRating(CR_VERSATILITY_DAMAGE_DONE) .. ") > "
         MyStatsText =  MyStatsText .. "Mastery ("   .. GetCombatRating(CR_MASTERY)                 .. ")\n "
+        MyStatsText =  MyStatsText .. "\nAbove stats for " .. class .. " shown ordered according to:\n" 
+        MyStatsText =  MyStatsText .. " - https://www.wowhead.com/guide/classes/hunter/beast-mastery/stat-priority-pve-dps\n" 
+        MyStatsText =  MyStatsText .. " - https://www.method.gg/guides/beast-mastery-hunter/stats-races-and-consumables\n" 
     elseif id == 266 then
         -- Intellect / Item Level >>> Haste > Mastery = Crit > Versatility
         MyStatsText =  MyStatsText .. class .. ' (Demonology Warlock, ID ' .. id ..')\n'
@@ -134,12 +152,17 @@ local function GetStatsDistrib()
         MyStatsText =  MyStatsText .. "Mastery ("   .. GetCombatRating(CR_MASTERY)                 .. ") = "
         MyStatsText =  MyStatsText .. "Crit ("      .. GetCombatRating(CR_CRIT_SPELL)              .. ") > "
         MyStatsText =  MyStatsText .. "Vers ("      .. GetCombatRating(CR_VERSATILITY_DAMAGE_DONE) .. ")\n "
+        MyStatsText =  MyStatsText .. "\nAbove stats for " .. class .. " shown ordered according to:\n" 
+        MyStatsText =  MyStatsText .. " - https://www.wowhead.com/guide/classes/warlock/demonology/stat-priority-pve-dps\n" 
+        MyStatsText =  MyStatsText .. " - https://www.method.gg/guides/demonology-warlock/stats-races-and-consumables\n" 
     else
         MyStatsText =  MyStatsText .. class .. " (not yet implemented)\n" 
     end
-    MyStatsText =  MyStatsText .. "\n(Above stats for " .. class .. " shown ordered according to https://www.method.gg/guides)\n\n" 
+    -- MyStatsText =  MyStatsText .. "\nAbove stats for " .. class .. " shown ordered according to:\n" 
+    -- MyStatsText =  MyStatsText .. " - https://www.wowhead.com/classes\n" 
+    -- MyStatsText =  MyStatsText .. " - https://www.method.gg/guides)\n" 
 
-    MyStatsText =  MyStatsText .. "General stats:\n"
+    MyStatsText =  MyStatsText .. "\nGeneral stats:\n"
     MyStatsText =  MyStatsText .. "  Strength ("       .. UnitStat("player",1)   .. ") \n"
     MyStatsText =  MyStatsText .. "  Agility ("        .. UnitStat("player",2)   .. ") \n"
     MyStatsText =  MyStatsText .. "  Stamina ("        .. UnitStat("player",3)   .. ") \n"
@@ -156,11 +179,11 @@ SLASH_METOGGLES1 = "/METOGGLES"
 SLASH_METOGGLES2 = "/MT2"
 
 local function ToogleFindMe()
-	if GetCVar("FindYourselfAnywhere") == "1" then 
-		SetCVar("FindYourselfAnywhere", "0") 
-	else 
-		SetCVar("FindYourselfAnywhere", "1")
-	end
+    if GetCVar("FindYourselfAnywhere") == "1" then 
+        SetCVar("FindYourselfAnywhere", "0") 
+    else 
+        SetCVar("FindYourselfAnywhere", "1")
+    end
 end
 
 SlashCmdList["METOGGLES"] = ToogleFindMe
@@ -371,8 +394,7 @@ function GetMainFrame(text)
 
     -- resizing
     f:SetResizable(true)
-    f:SetResizeBounds(150,100,720,480)
-
+    f:SetResizeBounds(150, 100)
     local rb = CreateFrame("Button", "AysonsResizeButton", f)
     rb:SetPoint("BOTTOMRIGHT", -6, 7)
     rb:SetSize(16, 16)
