@@ -244,7 +244,7 @@ function StatsEditBox_Show(text)
     if not StatsEditBox then
         local f = CreateFrame("Frame", "StatsEditBox", UIParent, "DialogBoxFrame")
         f:SetPoint("CENTER")
-        f:SetSize(720, 240)
+        f:SetSize(720,480)
         
         f:SetBackdrop({
             bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background",
@@ -282,7 +282,7 @@ function StatsEditBox_Show(text)
         
         -- Resizable
         f:SetResizable(true)
-        f:SetMinResize(150,100)
+        f:SetResizeBounds(150,100,720,480)
     
         local rb = CreateFrame("Button", "StatsEditBoxResizeButton", StatsEditBox)
         rb:SetPoint("BOTTOMRIGHT", -6, 7)
@@ -371,7 +371,8 @@ function GetMainFrame(text)
 
     -- resizing
     f:SetResizable(true)
-    f:SetMinResize(150, 100)
+    f:SetResizeBounds(150,100,720,480)
+
     local rb = CreateFrame("Button", "AysonsResizeButton", f)
     rb:SetPoint("BOTTOMRIGHT", -6, 7)
     rb:SetSize(16, 16)
