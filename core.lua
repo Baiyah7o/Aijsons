@@ -1,22 +1,3 @@
--- UI 
-
--- Castbar
-
--- CastingBarFrame:UnregisterAllEvents()
-
--- -- PlayerFrame:SetScript("OnEvent", nil);
--- PlayerFrame:Hide()
-
--- -- TargetFrame:SetScript("OnEvent", nil);
--- TargetFrame:Hide()
-
-
--- hides the social tab button above chat
--- QuickJoinToastButton:SetScript("OnEvent", nil);
--- QuickJoinToastButton:Hide()
--- -- QuickJoinToastButton:SetScript("OnEvent", nil);
--- QuickJoinToastButton.Toast:Hide()
-
 -- Pitch Settings
 
 SetCVar("CameraKeepCharacterCentered", 0)
@@ -27,23 +8,26 @@ SetCVar("test_cameraDynamicPitchBaseFovPadFlying", 0.45)
 
 
 -- Script Errors
+
 SetCVar("scriptErrors", 1)
 
 -- Spellqueue
+
 SetCVar("SpellQueueWindow", 200)
 
--- Minimap default
--- SetCVar("MinimapTrackedInfov2", 491528)
+-- set player spec
 
 NotifyInspect("player")
 RegisterCVar("MySpec", GetInspectSpecialization("player"))
 
 -- ElvUI Performance Tuning
+
 SetCVar("RAIDWaterDetail", 0)
 SetCVar("RAIDweatherDensity", 0)
 -- SetCVar("RAIDweatherDensity", 3)
 
--- 
+-- own cvars
+
 RegisterCVar("myCommandBar", 1)
 RegisterCVar("myRaidBar", 0)
 RegisterCVar("myProfessionBar", 0)
@@ -175,6 +159,8 @@ end
 
 SlashCmdList["STATS"] = GetStatsDistrib
 
+-- toggle selfhiglight
+
 SLASH_METOGGLES1 = "/METOGGLES"
 SLASH_METOGGLES2 = "/MT2"
 
@@ -189,6 +175,20 @@ end
 SlashCmdList["METOGGLES"] = ToogleFindMe
 
 SLASH_MYRAIDSET1 = "/MYRAIDSET"
+
+
+    -- Blizzard Number   Used for      ElvUI                Blizzard API
+    -----------------------------------------------------------------------------
+    --  Actionbar 1.1   Cooldowns    ElvUI Bar 1        (Primary Action Bar 1)
+    --  Actionbar 1.2   Profession   ElvUI Bar 2        (Primary Action Bar 2)
+    --  Actionbar 2     Keybinds     ElvUI Bar 6        MultiBarBottomLeft
+    --  Actionbar 3     Raid         ElvUI Bar 5        MultiBarBottomRight
+    --  Actionbar 4     Keybinds     ElvUI Bar 3        MultiBarRight
+    --  Actionbar 5     Keybinds     ElvUI Bar 4        MultiBarLeft
+
+
+    
+-- toggle raid actionbars and disable professions bar
 
 local function ToggleMyRaidSet()
     if IsAddOnLoaded("ElvUI") then
@@ -230,6 +230,8 @@ SlashCmdList["MYRAIDSET"] = ToggleMyRaidSet
 
 SLASH_MYPROFESSIONSET1 = "/MYPROFESSIONSET"
 
+-- toggle professions bar, disable raid bar setup
+
 local function ToggleMyPROFESSIONSet()
     if IsAddOnLoaded("ElvUI") then
 -- ElvUI
@@ -263,70 +265,72 @@ end
 
 SlashCmdList["MYPROFESSIONSET"] = ToggleMyPROFESSIONSet
 
+-- edit box with class stats
+ 
 function StatsEditBox_Show(text)
     if not StatsEditBox then
-        local f = CreateFrame("Frame", "StatsEditBox", UIParent, "DialogBoxFrame")
-        f:SetPoint("CENTER")
-        f:SetSize(720,480)
+        local FrameAysons = CreateFrame("Frame", "StatsEditBox", UIParent, "DialogBoxFrame")
+        FrameAysons:SetPoint("CENTER")
+        FrameAysons:SetSize(720,480)
         
-        f:SetBackdrop({
+        FrameAysons:SetBackdrop({
             bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background",
             edgeFile = "Interface\\PVPFrame\\UI-Character-PVP-Highlight", -- this one is neat
             edgeSize = 16,
             insets = { left = 8, right = 6, top = 8, bottom = 8 },
         })
-        f:SetBackdropBorderColor(0, .44, .87, 0.5) -- darkblue
+        FrameAysons:SetBackdropBorderColor(0, .44, .87, 0.5) -- darkblue
         
         -- Movable
-        f:SetMovable(true)
-        f:SetClampedToScreen(true)
-        f:SetScript("OnMouseDown", function(self, button)
+        FrameAysons:SetMovable(true)
+        FrameAysons:SetClampedToScreen(true)
+        FrameAysons:SetScript("OnMouseDown", function(self, button)
             if button == "LeftButton" then
                 self:StartMoving()
             end
         end)
-        f:SetScript("OnMouseUp", f.StopMovingOrSizing)
+        FrameAysons:SetScript("OnMouseUp", FrameAysons.StopMovingOrSizing)
         
         -- ScrollFrame
-        local sf = CreateFrame("ScrollFrame", "StatsEditBoxScrollFrame", StatsEditBox, "UIPanelScrollFrameTemplate")
-        sf:SetPoint("LEFT", 16, 0)
-        sf:SetPoint("RIGHT", -32, 0)
-        sf:SetPoint("TOP", 0, -16)
-        sf:SetPoint("BOTTOM", StatsEditBoxButton, "TOP", 0, 0)
+        local ScrollFrameAysons = CreateFrame("ScrollFrame", "StatsEditBoxScrollFrame", StatsEditBox, "UIPanelScrollFrameTemplate")
+        ScrollFrameAysons:SetPoint("LEFT", 16, 0)
+        ScrollFrameAysons:SetPoint("RIGHT", -32, 0)
+        ScrollFrameAysons:SetPoint("TOP", 0, -16)
+        ScrollFrameAysons:SetPoint("BOTTOM", StatsEditBoxButton, "TOP", 0, 0)
         
         -- EditBox
-        local eb = CreateFrame("EditBox", "StatsEditBoxEditBox", StatsEditBoxScrollFrame)
-        eb:SetSize(sf:GetSize())
-        eb:SetMultiLine(true)
-        eb:SetAutoFocus(false) -- dont automatically focus
-        eb:SetFontObject("ChatFontNormal")
-        eb:SetScript("OnEscapePressed", function() f:Hide() end)
-        sf:SetScrollChild(eb)
+        local EditBoxAysons = CreateFrame("EditBox", "StatsEditBoxEditBox", StatsEditBoxScrollFrame)
+        EditBoxAysons:SetSize(ScrollFrameAysons:GetSize())
+        EditBoxAysons:SetMultiLine(true)
+        EditBoxAysons:SetAutoFocus(false) -- dont automatically focus
+        EditBoxAysons:SetFontObject("ChatFontNormal")
+        EditBoxAysons:SetScript("OnEscapePressed", function() FrameAysons:Hide() end)
+        ScrollFrameAysons:SetScrollChild(EditBoxAysons)
         
         -- Resizable
-        f:SetResizable(true)
-        f:SetResizeBounds(150,100,720,480)
+        FrameAysons:SetResizable(true)
+        FrameAysons:SetResizeBounds(150,100,1280,720)
     
-        local rb = CreateFrame("Button", "StatsEditBoxResizeButton", StatsEditBox)
-        rb:SetPoint("BOTTOMRIGHT", -6, 7)
-        rb:SetSize(16, 16)
+        local ButtonAysons = CreateFrame("Button", "StatsEditBoxResizeButton", StatsEditBox)
+        ButtonAysons:SetPoint("BOTTOMRIGHT", -6, 7)
+        ButtonAysons:SetSize(16, 16)
         
-        rb:SetNormalTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Up")
-        rb:SetHighlightTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Highlight")
-        rb:SetPushedTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Down")
+        ButtonAysons:SetNormalTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Up")
+        ButtonAysons:SetHighlightTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Highlight")
+        ButtonAysons:SetPushedTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Down")
         
-        rb:SetScript("OnMouseDown", function(self, button)
+        ButtonAysons:SetScript("OnMouseDown", function(self, button)
             if button == "LeftButton" then
-                f:StartSizing("BOTTOMRIGHT")
+                FrameAysons:StartSizing("BOTTOMRIGHT")
                 self:GetHighlightTexture():Hide() -- more noticeable
             end
         end)
-        rb:SetScript("OnMouseUp", function(self, button)
-            f:StopMovingOrSizing()
+        ButtonAysons:SetScript("OnMouseUp", function(self, button)
+            FrameAysons:StopMovingOrSizing()
             self:GetHighlightTexture():Show()
-            eb:SetWidth(sf:GetWidth())
+            EditBoxAysons:SetWidth(ScrollFrameAysons:GetWidth())
         end)
-        f:Show()
+        FrameAysons:Show()
     end
     
     if text then
@@ -341,31 +345,31 @@ function GetMainFrame(text)
   if not AysonsFrame then
     -- Main Frame
     local frameConfig = self.db.profile.frame
-    local f = CreateFrame("Frame", "AysonsFrame", UIParent, "DialogBoxFrame")
-    f:ClearAllPoints()
+    local FrameAysons = CreateFrame("Frame", "AysonsFrame", UIParent, "DialogBoxFrame")
+    FrameAysons:ClearAllPoints()
     -- load position from local DB
-    f:SetPoint(
+    FrameAysons:SetPoint(
       frameConfig.point,
       frameConfig.relativeFrame,
       frameConfig.relativePoint,
       frameConfig.ofsx,
       frameConfig.ofsy
     )
-    f:SetSize(frameConfig.width, frameConfig.height)
-    f:SetBackdrop({
+    FrameAysons:SetSize(frameConfig.width, frameConfig.height)
+    FrameAysons:SetBackdrop({
       bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background",
       edgeFile = "Interface\\PVPFrame\\UI-Character-PVP-Highlight",
       edgeSize = 16,
       insets = { left = 8, right = 8, top = 8, bottom = 8 },
     })
-    f:SetMovable(true)
-    f:SetClampedToScreen(true)
-    f:SetScript("OnMouseDown", function(self, button)
+    FrameAysons:SetMovable(true)
+    FrameAysons:SetClampedToScreen(true)
+    FrameAysons:SetScript("OnMouseDown", function(self, button)
       if button == "LeftButton" then
         self:StartMoving()
       end
     end)
-    f:SetScript("OnMouseUp", function(self, button)
+    FrameAysons:SetScript("OnMouseUp", function(self, button)
       self:StopMovingOrSizing()
       -- save position between sessions
       local point, relativeFrame, relativeTo, ofsx, ofsy = self:GetPoint()
@@ -377,46 +381,46 @@ function GetMainFrame(text)
     end)
 
     -- scroll frame
-    local sf = CreateFrame("ScrollFrame", "AysonsScrollFrame", f, "UIPanelScrollFrameTemplate")
-    sf:SetPoint("LEFT", 16, 0)
-    sf:SetPoint("RIGHT", -32, 0)
-    sf:SetPoint("TOP", 0, -32)
-    sf:SetPoint("BOTTOM", AysonsFrameButton, "TOP", 0, 0)
+    local ScrollFrameAysons = CreateFrame("ScrollFrame", "AysonsScrollFrame", f, "UIPanelScrollFrameTemplate")
+    ScrollFrameAysons:SetPoint("LEFT", 16, 0)
+    ScrollFrameAysons:SetPoint("RIGHT", -32, 0)
+    ScrollFrameAysons:SetPoint("TOP", 0, -32)
+    ScrollFrameAysons:SetPoint("BOTTOM", AysonsFrameButton, "TOP", 0, 0)
 
     -- edit box
-    local eb = CreateFrame("EditBox", "AysonsEditBox", AysonsScrollFrame)
-    eb:SetSize(sf:GetSize())
-    eb:SetMultiLine(true)
-    eb:SetAutoFocus(true)
-    eb:SetFontObject("ChatFontNormal")
-    eb:SetScript("OnEscapePressed", function() f:Hide() end)
-    sf:SetScrollChild(eb)
+    local EditBoxAysons = CreateFrame("EditBox", "AysonsEditBox", AysonsScrollFrame)
+    EditBoxAysons:SetSize(ScrollFrameAysons:GetSize())
+    EditBoxAysons:SetMultiLine(true)
+    EditBoxAysons:SetAutoFocus(true)
+    EditBoxAysons:SetFontObject("ChatFontNormal")
+    EditBoxAysons:SetScript("OnEscapePressed", function() FrameAysons:Hide() end)
+    ScrollFrameAysons:SetScrollChild(EditBoxAysons)
 
     -- resizing
-    f:SetResizable(true)
-    f:SetResizeBounds(150, 100)
-    local rb = CreateFrame("Button", "AysonsResizeButton", f)
-    rb:SetPoint("BOTTOMRIGHT", -6, 7)
-    rb:SetSize(16, 16)
+    FrameAysons:SetResizable(true)
+    FrameAysons:SetResizeBounds(150, 100)
+    local ButtonAysons = CreateFrame("Button", "AysonsResizeButton", FrameAysons)
+    ButtonAysons:SetPoint("BOTTOMRIGHT", -6, 7)
+    ButtonAysons:SetSize(16, 16)
 
-    rb:SetNormalTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Up")
-    rb:SetHighlightTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Highlight")
-    rb:SetPushedTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Down")
+    ButtonAysons:SetNormalTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Up")
+    ButtonAysons:SetHighlightTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Highlight")
+    ButtonAysons:SetPushedTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Down")
 
-    rb:SetScript("OnMouseDown", function(self, button)
+    ButtonAysons:SetScript("OnMouseDown", function(self, button)
         if button == "LeftButton" then
-            f:StartSizing("BOTTOMRIGHT")
+            FrameAysons:StartSizing("BOTTOMRIGHT")
             self:GetHighlightTexture():Hide() -- more noticeable
         end
     end)
-    rb:SetScript("OnMouseUp", function(self, button)
-        f:StopMovingOrSizing()
+    ButtonAysons:SetScript("OnMouseUp", function(self, button)
+        FrameAysons:StopMovingOrSizing()
         self:GetHighlightTexture():Show()
-        eb:SetWidth(sf:GetWidth())
+        EditBoxAysons:SetWidth(ScrollFrameAysons:GetWidth())
 
         -- save size between sessions
-        frameConfig.width = f:GetWidth()
-        frameConfig.height = f:GetHeight()
+        frameConfig.width = FrameAysons:GetWidth()
+        frameConfig.height = FrameAysons:GetHeight()
     end)
 
     AysonsFrame = f
@@ -425,6 +429,9 @@ function GetMainFrame(text)
   AysonsEditBox:HighlightText()
   return AysonsFrame
 end
+
+
+-- clamp  name plates above actionbars and hekili
 
 SLASH_MYNAMEPLATES1 = "/MYNAMEPLATES"
 SLASH_MYNAMEPLATES2 = "/NP"
@@ -442,6 +449,8 @@ SlashCmdList["MYNAMEPLATES"] = MyNameplates
 
 SLASH_MYCOMMANDBAR1 = "/MYCOMMANDBAR"
 SLASH_MYCOMMANDBAR2 = "/MCB"
+
+-- toggle hidden command bars for keybinds 
 
 local function MYCOMMANDBAR()
     if IsAddOnLoaded("ElvUI") then
