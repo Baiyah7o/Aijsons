@@ -476,3 +476,18 @@ local function MYCOMMANDBAR()
 end
 
 SlashCmdList["MYCOMMANDBAR"] = MYCOMMANDBAR
+
+-- MiniMap
+
+SLASH_ROTATEMINIMAP1 = "/ROTATEMINIMAP"
+SLASH_ROTATEMINIMAP2 = "/RMM"
+
+local function ROTATEMINIMAP()
+    if GetCVar("RotateMinimap") == "1" then
+        SetCVar("RotateMinimap",0)
+    else
+        SetCVar("RotateMinimap",1)
+    end
+end
+
+SlashCmdList["ROTATEMINIMAP"] = ROTATEMINIMAP
