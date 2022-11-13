@@ -154,6 +154,7 @@ Aysons:Register("sound", "Aysons, Chi Torpedo", [[Interface\Addons\Aysons\Sound\
 Aysons:Register("sound", "Aysons, Circle", [[Interface\Addons\Aysons\Sound\Circle.ogg]])
 Aysons:Register("sound", "Aysons, Circle on You", [[Interface\Addons\Aysons\Sound\Circle on You.ogg]])
 Aysons:Register("sound", "Aysons, Clash", [[Interface\Addons\Aysons\Sound\Clash.ogg]])
+Aysons:Register("sound", "Aysons, Cleansing Pain", [[Interface\Addons\Aysons\Sound\Cleansing Pain.ogg]])
 Aysons:Register("sound", "Aysons, Clear", [[Interface\Addons\Aysons\Sound\Clear.ogg]])
 Aysons:Register("sound", "Aysons, Cleave", [[Interface\Addons\Aysons\Sound\Cleave.ogg]])
 Aysons:Register("sound", "Aysons, Cold Blood", [[Interface\Addons\Aysons\Sound\Cold Blood.ogg]])
