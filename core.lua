@@ -139,6 +139,21 @@ local function GetStatsDistrib()
         MyStatsText =  MyStatsText .. "\nAbove stats for " .. class .. " shown ordered according to:\n" 
         MyStatsText =  MyStatsText .. " - https://www.wowhead.com/guide/classes/warlock/demonology/stat-priority-pve-dps\n" 
         MyStatsText =  MyStatsText .. " - https://www.method.gg/guides/demonology-warlock/stats-races-and-consumables\n" 
+    elseif id == 1468 then
+        -- Intellect / Item Level >>> Haste > Mastery = Crit > Versatility
+        MyStatsText =  MyStatsText .. class .. ' (Preservation Evoker, ID ' .. id ..')\n'
+        MyStatsText =  MyStatsText .. '\nItem level increases intellect and stamina. When at the same item level the priority should be for raiding:\n\n'
+        MyStatsText =  MyStatsText .. "Mastery ("   .. GetCombatRating(CR_MASTERY)                 .. ") > "
+        MyStatsText =  MyStatsText .. "Crit ("      .. GetCombatRating(CR_CRIT_SPELL)              .. ") > "
+        MyStatsText =  MyStatsText .. "Haste ("     .. GetCombatRating(CR_HASTE_SPELL)             .. ") > "
+        MyStatsText =  MyStatsText .. "Vers ("      .. GetCombatRating(CR_VERSATILITY_DAMAGE_DONE) .. ")\n "
+        MyStatsText =  MyStatsText .. '\nPriority should be for Mythic+, healing focus:\n\n'
+        MyStatsText =  MyStatsText .. "Crit ("      .. GetCombatRating(CR_CRIT_SPELL)              .. ") = "
+        MyStatsText =  MyStatsText .. "Haste ("     .. GetCombatRating(CR_HASTE_SPELL)             .. ") = "
+        MyStatsText =  MyStatsText .. "Vers ("      .. GetCombatRating(CR_VERSATILITY_DAMAGE_DONE) .. ") > "
+        MyStatsText =  MyStatsText .. "Mastery ("   .. GetCombatRating(CR_MASTERY)                 .. ") \n "
+        MyStatsText =  MyStatsText .. "\nAbove stats for " .. class .. " shown ordered according to:\n" 
+        MyStatsText =  MyStatsText .. " - https://www.wowhead.com/ptr/guide/classes/evoker/preservation/stat-priority-pve-healer\n" 
     else
         MyStatsText =  MyStatsText .. class .. " (not yet implemented)\n" 
     end
