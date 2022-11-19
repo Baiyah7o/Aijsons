@@ -457,6 +457,7 @@ Aysons:Register("sound", "Aysons, Switch to Skull", [[Interface\Addons\Aysons\So
 Aysons:Register("sound", "Aysons, Switch to Square", [[Interface\Addons\Aysons\Sound\Switch to Square.ogg]])
 Aysons:Register("sound", "Aysons, Switch to Star", [[Interface\Addons\Aysons\Sound\Switch to Star.ogg]])
 Aysons:Register("sound", "Aysons, Switch to Triangle", [[Interface\Addons\Aysons\Sound\Switch to Triangle.ogg]])
+Aysons:Register("sound", "Aysons, Tail Swipe", [[Interface\Addons\Aysons\Sound\Tail Swipe.ogg]])
 Aysons:Register("sound", "Aysons, Tank", [[Interface\Addons\Aysons\Sound\Tank.ogg]])
 Aysons:Register("sound", "Aysons, Tank Swap", [[Interface\Addons\Aysons\Sound\Tank Swap.ogg]])
 Aysons:Register("sound", "Aysons, Targeted", [[Interface\Addons\Aysons\Sound\Targeted.ogg]])
