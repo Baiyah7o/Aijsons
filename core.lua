@@ -453,11 +453,8 @@ SLASH_MYNAMEPLATES2 = "/NP"
 
 local function MyNameplates()
 -- Nameplate Settings
-    SetCVar("nameplateOtherTopInset", 0.08)
+    SetCVar("nameplateOtherTopInset", 0.2)
     SetCVar("nameplateOtherBottomInset", 0.28)
--- SetCVar("nameplateLargeBottomInset", 0.15)
--- SetCVar("nameplateLargeTopInset", 0.1)
-
 end
 
 SlashCmdList["MYNAMEPLATES"] = MyNameplates
