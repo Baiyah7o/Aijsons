@@ -109,12 +109,14 @@ local function GetStatsDistrib()
         MyStatsText =  MyStatsText .. " https://www.method.gg/guides/restoration-druid/stats-races-and-consumables\n" 
     elseif id == 250 then
         -- Death Knight - Blood, Haste > Versatility > Critical Strike > Mastery
-        MyStatsText =  MyStatsText .. class .. ' (Blood Death Knight, ID ' .. id ..') (Version 9.2.5)\n'
-        MyStatsText =  MyStatsText .. '\nItem level over all stats as more stamina and main stat always are good. When at the same item level the priority should be:\n\n'
-        MyStatsText =  MyStatsText .. "Haste ("     .. GetCombatRating(CR_HASTE_SPELL)             .. ") > "
-        MyStatsText =  MyStatsText .. "Vers ("      .. GetCombatRating(CR_VERSATILITY_DAMAGE_DONE) .. ") > "
-        MyStatsText =  MyStatsText .. "Crit ("      .. GetCombatRating(CR_CRIT_SPELL)              .. ") > "
-        MyStatsText =  MyStatsText .. "Mastery ("   .. GetCombatRating(CR_MASTERY)                 .. ")\n "
+        MyStatsText =  MyStatsText .. class .. ' (Blood Death Knight, ID ' .. id ..')\n'
+        MyStatsText =  MyStatsText .. '\nItem level over all secondary stats. When same item level ranking could be:\n\n'
+        MyStatsText =  MyStatsText .. "Haste ("     .. GetCombatRating(CR_HASTE_SPELL)             .. ") >= "
+        MyStatsText =  MyStatsText .. "Mastery ("   .. GetCombatRating(CR_MASTERY)                 .. ") =  "
+        MyStatsText =  MyStatsText .. "Crit ("      .. GetCombatRating(CR_CRIT_SPELL)              .. ") >= "
+        MyStatsText =  MyStatsText .. "Vers ("      .. GetCombatRating(CR_VERSATILITY_DAMAGE_DONE) .. ") \n "
+        
+        
         MyStatsText =  MyStatsText .. "\nAbove stats for " .. class .. " shown ordered according to:\n" 
         MyStatsText =  MyStatsText .. " https://www.wowhead.com/guide/classes/death-knight/blood/stat-priority-pve-tank\n" 
         MyStatsText =  MyStatsText .. " https://www.method.gg/guides/blood-death-knight/stats-races-and-consumables\n" 
