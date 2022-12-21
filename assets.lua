@@ -141,6 +141,7 @@ Aysons:Register("sound", "Aysons, Break", [[Interface\Addons\Aysons\Sound\Break.
 Aysons:Register("sound", "Aysons, Break Tether", [[Interface\Addons\Aysons\Sound\Break Tether.ogg]])
 Aysons:Register("sound", "Aysons, Brilliant Glass", [[Interface\Addons\Aysons\Sound\Brilliant Glass.ogg]])
 Aysons:Register("sound", "Aysons, Buff", [[Interface\Addons\Aysons\Sound\Buff.ogg]])
+Aysons:Register("sound", "Aysons, Cancel Cast", [[Interface\Addons\Aysons\Sound\Cancel Cast.ogg]])
 Aysons:Register("sound", "Aysons, Capacitor Totem", [[Interface\Addons\Aysons\Sound\Capacitor Totem.ogg]])
 Aysons:Register("sound", "Aysons, Cat Form", [[Interface\Addons\Aysons\Sound\Cat Form.ogg]])
 Aysons:Register("sound", "Aysons, Caution", [[Interface\Addons\Aysons\Sound\Caution.ogg]])
