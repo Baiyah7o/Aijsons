@@ -514,3 +514,34 @@ local function ROTATEMINIMAP()
 end
 
 SlashCmdList["ROTATEMINIMAP"] = ROTATEMINIMAP
+
+-- MyPitchSets
+
+RegisterCVar("myPitch", 1)
+
+SLASH_MYPITCHSETS1 = "/MYPITCHSETS"
+SLASH_MYPITCHSETS2 = "/MPS"
+
+local function MYPITCHSETS()
+    if GetCVar("myPitch") == "0" then
+        SetCVar("test_cameraDynamicPitch", 1)
+        SetCVar("myPitch", 1)
+        SetCVar("test_cameraDynamicPitchBaseFovPad", 0.45)
+        SetCVar("test_cameraDynamicPitchBaseFovPadDownScale", 0.45)
+        SetCVar("test_cameraDynamicPitchBaseFovPadFlying", 0.45)
+    elseif GetCVar("myPitch") == "1" then
+        SetCVar("test_cameraDynamicPitch", 1)
+        SetCVar("myPitch", 2)
+        SetCVar("test_cameraDynamicPitchBaseFovPad", 0.3)
+        SetCVar("test_cameraDynamicPitchBaseFovPadDownScale", 0.3)
+        SetCVar("test_cameraDynamicPitchBaseFovPadFlying", 0.3)
+    else 
+        SetCVar("test_cameraDynamicPitch", 0)
+        SetCVar("myPitch", 0)
+        SetCVar("test_cameraDynamicPitchBaseFovPad", 0.4)
+        SetCVar("test_cameraDynamicPitchBaseFovPadDownScale", 0.25)
+        SetCVar("test_cameraDynamicPitchBaseFovPadFlying", 0.75)
+    end
+end
+
+SlashCmdList["MYPITCHSETS"] = MYPITCHSETS
