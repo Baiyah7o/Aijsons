@@ -4,7 +4,7 @@ SetCVar("CameraKeepCharacterCentered", 0)
 SetCVar("test_cameraDynamicPitch", 1)
 SetCVar("test_cameraDynamicPitchBaseFovPad", 0.45)
 SetCVar("test_cameraDynamicPitchBaseFovPadDownScale", 0.45)
-SetCVar("test_cameraDynamicPitchBaseFovPadFlying", 0.45)
+SetCVar("test_cameraDynamicPitchBaseFovPadFlying", 0.75)
 
 
 -- Script Errors
@@ -522,22 +522,47 @@ RegisterCVar("myPitch", 1)
 SLASH_MYPITCHSETS1 = "/MYPITCHSETS"
 SLASH_MYPITCHSETS2 = "/MPS"
 
+-- local function MYPITCHSETS()
+--     if GetCVar("myPitch") == "0" then
+--         SetCVar("test_cameraDynamicPitch", 1)
+--         SetCVar("myPitch", 1)
+--         SetCVar("test_cameraDynamicPitchBaseFovPad", 0.45)
+--         SetCVar("test_cameraDynamicPitchBaseFovPadDownScale", 0.45)
+--         SetCVar("test_cameraDynamicPitchBaseFovPadFlying", 0.45)
+--     elseif GetCVar("myPitch") == "1" then
+--         SetCVar("test_cameraDynamicPitch", 1)
+--         SetCVar("myPitch", 2)
+--         SetCVar("test_cameraDynamicPitchBaseFovPad", 0.3)
+--         SetCVar("test_cameraDynamicPitchBaseFovPadDownScale", 0.3)
+--         SetCVar("test_cameraDynamicPitchBaseFovPadFlying", 0.3)
+--     else 
+--         SetCVar("test_cameraDynamicPitch", 0)
+--         SetCVar("myPitch", 0)
+--         SetCVar("test_cameraDynamicPitchBaseFovPad", 0.4)
+--         SetCVar("test_cameraDynamicPitchBaseFovPadDownScale", 0.25)
+--         SetCVar("test_cameraDynamicPitchBaseFovPadFlying", 0.75)
+--     end
+-- end
+
 local function MYPITCHSETS()
     if GetCVar("myPitch") == "0" then
         SetCVar("test_cameraDynamicPitch", 1)
         SetCVar("myPitch", 1)
+        SetCVar("nameplateOtherAtBase", 0)
         SetCVar("test_cameraDynamicPitchBaseFovPad", 0.45)
         SetCVar("test_cameraDynamicPitchBaseFovPadDownScale", 0.45)
-        SetCVar("test_cameraDynamicPitchBaseFovPadFlying", 0.45)
+        SetCVar("test_cameraDynamicPitchBaseFovPadFlying", 0.75)
     elseif GetCVar("myPitch") == "1" then
         SetCVar("test_cameraDynamicPitch", 1)
         SetCVar("myPitch", 2)
-        SetCVar("test_cameraDynamicPitchBaseFovPad", 0.3)
-        SetCVar("test_cameraDynamicPitchBaseFovPadDownScale", 0.3)
-        SetCVar("test_cameraDynamicPitchBaseFovPadFlying", 0.3)
+        SetCVar("nameplateOtherAtBase", 0)
+        SetCVar("test_cameraDynamicPitchBaseFovPad", 0.2)
+        SetCVar("test_cameraDynamicPitchBaseFovPadDownScale", 2)
+        SetCVar("test_cameraDynamicPitchBaseFovPadFlying", 0.75)
     else 
         SetCVar("test_cameraDynamicPitch", 0)
         SetCVar("myPitch", 0)
+        SetCVar("nameplateOtherAtBase", 2)
         SetCVar("test_cameraDynamicPitchBaseFovPad", 0.4)
         SetCVar("test_cameraDynamicPitchBaseFovPadDownScale", 0.25)
         SetCVar("test_cameraDynamicPitchBaseFovPadFlying", 0.75)

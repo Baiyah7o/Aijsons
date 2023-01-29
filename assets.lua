@@ -265,6 +265,8 @@ Aysons:Register("sound", "Aysons, Hand of Protection", [[Interface\Addons\Aysons
 Aysons:Register("sound", "Aysons, Haste Buff", [[Interface\Addons\Aysons\Sound\Haste Buff.ogg]])
 Aysons:Register("sound", "Aysons, Heal Cd", [[Interface\Addons\Aysons\Sound\Heal Cd.ogg]])
 Aysons:Register("sound", "Aysons, Healer", [[Interface\Addons\Aysons\Sound\Healer.ogg]])
+Aysons:Register("sound", "Aysons, Heal Pet", [[Interface\Addons\Aysons\Sound\Heal Pet.ogg]])
+Aysons:Register("sound", "Aysons, Health Funnel", [[Interface\Addons\Aysons\Sound\Health Funnel.ogg]])
 Aysons:Register("sound", "Aysons, Healthstone", [[Interface\Addons\Aysons\Sound\Healthstone.ogg]])
 Aysons:Register("sound", "Aysons, Healthstone on Healer", [[Interface\Addons\Aysons\Sound\Healthstone on Healer.ogg]])
 Aysons:Register("sound", "Aysons, Healthstone on Tank", [[Interface\Addons\Aysons\Sound\Healthstone on Tank.ogg]])
