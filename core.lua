@@ -35,7 +35,40 @@ RegisterCVar("myProfessionBar", 0)
 SetCVar("myRaidBar", 0)
 SetCVar("myProfessionBar", 0)
 
+-- frame that contains the text
+local MyScreenMessage = CreateFrame("Frame","ScT",UIParent)
+MyScreenMessage:SetSize(720,72)
+-- animations will revert to this starting position/alpha
+MyScreenMessage:SetPoint("CENTER")
+MyScreenMessage:SetAlpha(0)
+-- create fontstring to be set that fills frame
+MyScreenMessage.text = MyScreenMessage:CreateFontString(nil,"ARTWORK","GameFont72Normal")
+MyScreenMessage.text:SetAllPoints(true)
 
+-- set up an AnimationGroup for a related group of animations
+MyScreenMessage.anim = MyScreenMessage:CreateAnimationGroup()
+-- order 1: fadein alpha 0 to 1
+MyScreenMessage.anim.fadein = MyScreenMessage.anim:CreateAnimation("alpha")
+MyScreenMessage.anim.fadein:SetFromAlpha(0)
+MyScreenMessage.anim.fadein:SetToAlpha(1)
+MyScreenMessage.anim.fadein:SetDuration(0.5)
+MyScreenMessage.anim.fadein:SetOrder(1)
+MyScreenMessage.anim.fadein:SetEndDelay(0.5) -- wait half a second while faded in
+-- order 2: fadeout alpha 1 to 0
+MyScreenMessage.anim.fadeout = MyScreenMessage.anim:CreateAnimation("alpha")
+MyScreenMessage.anim.fadeout:SetFromAlpha(1)
+MyScreenMessage.anim.fadeout:SetToAlpha(0)
+MyScreenMessage.anim.fadeout:SetDuration(0.25)
+MyScreenMessage.anim.fadeout:SetOrder(2)
+
+
+-- create slash command to set text and start animation
+-- try: /float Hello, world!
+-- SLASH_FLOAT1 = "/float"
+-- SlashCmdList["FLOAT"] = function(msg)
+--   MyScreenMessage.text:SetText(msg)
+--   MyScreenMessage.anim:Play()
+-- end
 
 
 SLASH_STATS1 = "/STATS"
@@ -518,6 +551,7 @@ SlashCmdList["ROTATEMINIMAP"] = ROTATEMINIMAP
 -- MyPitchSets
 
 RegisterCVar("myPitch", 1)
+RegisterCVar("myPitchSetname", "center")
 
 SLASH_MYPITCHSETS1 = "/MYPITCHSETS"
 SLASH_MYPITCHSETS2 = "/MPS"
@@ -548,6 +582,7 @@ local function MYPITCHSETS()
     if GetCVar("myPitch") == "0" then
         SetCVar("test_cameraDynamicPitch", 1)
         SetCVar("myPitch", 1)
+        SetCVar("myPitchSetname", "down")
         SetCVar("nameplateOtherAtBase", 0)
         SetCVar("test_cameraDynamicPitchBaseFovPad", 0.45)
         SetCVar("test_cameraDynamicPitchBaseFovPadDownScale", 0.45)
@@ -555,6 +590,7 @@ local function MYPITCHSETS()
     elseif GetCVar("myPitch") == "1" then
         SetCVar("test_cameraDynamicPitch", 1)
         SetCVar("myPitch", 2)
+        SetCVar("myPitchSetname", "bottom")
         SetCVar("nameplateOtherAtBase", 0)
         SetCVar("test_cameraDynamicPitchBaseFovPad", 0.2)
         SetCVar("test_cameraDynamicPitchBaseFovPadDownScale", 2)
@@ -562,11 +598,17 @@ local function MYPITCHSETS()
     else 
         SetCVar("test_cameraDynamicPitch", 0)
         SetCVar("myPitch", 0)
+        SetCVar("myPitchSetname", "centered")
         SetCVar("nameplateOtherAtBase", 2)
         SetCVar("test_cameraDynamicPitchBaseFovPad", 0.4)
         SetCVar("test_cameraDynamicPitchBaseFovPadDownScale", 0.25)
         SetCVar("test_cameraDynamicPitchBaseFovPadFlying", 0.75)
     end
+    msg = "Pitch " .. GetCVar("myPitchSetname")
+    MyScreenMessage.text:SetText(msg)
+    MyScreenMessage.anim:Play()
 end
 
 SlashCmdList["MYPITCHSETS"] = MYPITCHSETS
+
+
