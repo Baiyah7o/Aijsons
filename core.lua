@@ -1,3 +1,6 @@
+-- Disable the ActionCam warning message.
+UIParent:UnregisterEvent("EXPERIMENTAL_CVAR_CONFIRMATION_NEEDED")
+
 -- Pitch Settings
 
 SetCVar("CameraKeepCharacterCentered", 0)
@@ -24,7 +27,6 @@ RegisterCVar("MySpec", GetInspectSpecialization("player"))
 
 SetCVar("RAIDWaterDetail", 0)
 SetCVar("RAIDweatherDensity", 0)
--- SetCVar("RAIDweatherDensity", 3)
 
 -- own cvars
 
@@ -32,8 +34,9 @@ RegisterCVar("myCommandBar", 1)
 RegisterCVar("myRaidBar", 0)
 RegisterCVar("myProfessionBar", 0)
 
-SetCVar("myRaidBar", 0)
-SetCVar("myProfessionBar", 0)
+-- SetCVar("myRaidBar", 0)
+-- SetCVar("myProfessionBar", 0)
+
 
 -- frame that contains the text
 local MyScreenMessage = CreateFrame("Frame","ScT",UIParent)
@@ -70,6 +73,8 @@ MyScreenMessage.anim.fadeout:SetOrder(2)
 --   MyScreenMessage.anim:Play()
 -- end
 
+
+-- create slash command to show stats
 
 SLASH_STATS1 = "/STATS"
 
@@ -218,7 +223,7 @@ end
 
 SlashCmdList["STATS"] = GetStatsDistrib
 
--- toggle selfhiglight
+-- create slash command to toggle selfhiglight
 
 SLASH_METOGGLES1 = "/METOGGLES"
 SLASH_METOGGLES2 = "/MT2"
@@ -247,7 +252,7 @@ SLASH_MYRAIDSET1 = "/MYRAIDSET"
 
 
     
--- toggle raid actionbars and disable professions bar
+-- create funtion to toggle raid actionbars and disable professions bar
 
 local function ToggleMyRaidSet()
     if IsAddOnLoaded("ElvUI") then
@@ -285,11 +290,13 @@ local function ToggleMyRaidSet()
     end 
 end
 
+
+-- create slash command toggle professions bar, disable raid bar setup
+
 SlashCmdList["MYRAIDSET"] = ToggleMyRaidSet
 
 SLASH_MYPROFESSIONSET1 = "/MYPROFESSIONSET"
 
--- toggle professions bar, disable raid bar setup
 
 local function ToggleMyPROFESSIONSet()
     if IsAddOnLoaded("ElvUI") then
@@ -548,35 +555,14 @@ end
 
 SlashCmdList["ROTATEMINIMAP"] = ROTATEMINIMAP
 
--- MyPitchSets
+
+-- create slash command toggle predefined pitch setups
 
 RegisterCVar("myPitch", 1)
 RegisterCVar("myPitchSetname", "center")
 
 SLASH_MYPITCHSETS1 = "/MYPITCHSETS"
 SLASH_MYPITCHSETS2 = "/MPS"
-
--- local function MYPITCHSETS()
---     if GetCVar("myPitch") == "0" then
---         SetCVar("test_cameraDynamicPitch", 1)
---         SetCVar("myPitch", 1)
---         SetCVar("test_cameraDynamicPitchBaseFovPad", 0.45)
---         SetCVar("test_cameraDynamicPitchBaseFovPadDownScale", 0.45)
---         SetCVar("test_cameraDynamicPitchBaseFovPadFlying", 0.45)
---     elseif GetCVar("myPitch") == "1" then
---         SetCVar("test_cameraDynamicPitch", 1)
---         SetCVar("myPitch", 2)
---         SetCVar("test_cameraDynamicPitchBaseFovPad", 0.3)
---         SetCVar("test_cameraDynamicPitchBaseFovPadDownScale", 0.3)
---         SetCVar("test_cameraDynamicPitchBaseFovPadFlying", 0.3)
---     else 
---         SetCVar("test_cameraDynamicPitch", 0)
---         SetCVar("myPitch", 0)
---         SetCVar("test_cameraDynamicPitchBaseFovPad", 0.4)
---         SetCVar("test_cameraDynamicPitchBaseFovPadDownScale", 0.25)
---         SetCVar("test_cameraDynamicPitchBaseFovPadFlying", 0.75)
---     end
--- end
 
 local function MYPITCHSETS()
     if GetCVar("myPitch") == "0" then
