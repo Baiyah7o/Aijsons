@@ -10,9 +10,9 @@
 10
 Add
 Adds
+AMS
 Ancestral Swiftness
 Anti-Magic Shell
-AMS
 Arcane Power
 Arcane Torrent
 Archangel
@@ -81,8 +81,8 @@ Dash
 Deadly Calm
 Death Grip
 Deebuff
-Deebuff expired
 Deebuff Avoid
+Deebuff expired
 Desperate Prayer
 Deterrence
 Devotion Aura
@@ -112,15 +112,29 @@ Evasion
 Execute
 Execute Mind Control
 Exit
+F1
+F10
+F11
+F12
+F2
+F3
+F5
+F6
+F7
+F8
+F9
 Face Away
 Fade
 Faerie Fire
+Felguardrange
+Felhunterrange
 Find Partner
 Fixate
 Fixated
 Focus Add
 Focus Adds
 Focus Boss
+Focusrange
 Forbearance
 Fortifying Brew
 Frenzied Regeneration
@@ -251,6 +265,7 @@ Overlap
 Pain Suppression
 Pendulum of Telluric Currents
 Personal
+Pet Range
 Phase 1
 Phase 2
 Phase 3
@@ -275,11 +290,6 @@ Purge
 Purifying Brew
 Purple
 Rake
-Felguardrange
-Felhunterrange
-Focusrange
-Petrange
-Targetrange
 Ranged
 Ready
 Rebuke
@@ -372,6 +382,7 @@ Tail Swipe
 Tank
 Tank Swap
 Targeted
+Targetrange
 Taunt
 Temporal Shield
 Tethered
@@ -403,14 +414,3 @@ Word of Glory
 Wyvern Sting
 Yellow
 Zen Meditation
-F1
-F2
-F3
-F5
-F6
-F7
-F8
-F9
-F10
-F11
-F12
