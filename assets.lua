@@ -468,7 +468,7 @@ Aysons:Register("sound", "Aysons, Tail Swipe", [[Interface\Addons\Aysons\Sound\T
 Aysons:Register("sound", "Aysons, Tank", [[Interface\Addons\Aysons\Sound\Tank.ogg]])
 Aysons:Register("sound", "Aysons, Tank Swap", [[Interface\Addons\Aysons\Sound\Tank Swap.ogg]])
 Aysons:Register("sound", "Aysons, Targeted", [[Interface\Addons\Aysons\Sound\Targeted.ogg]])
-Aysons:Register("sound", "Aysons, Targetrange", [[Interface\Addons\Aysons\Sound\Targetrange.ogg]])
+Aysons:Register("sound", "Aysons, Target Range", [[Interface\Addons\Aysons\Sound\Target Range.ogg]])
 Aysons:Register("sound", "Aysons, Taunt", [[Interface\Addons\Aysons\Sound\Taunt.ogg]])
 Aysons:Register("sound", "Aysons, Temporal Shield", [[Interface\Addons\Aysons\Sound\Temporal Shield.ogg]])
 Aysons:Register("sound", "Aysons, Tethered", [[Interface\Addons\Aysons\Sound\Tethered.ogg]])
