@@ -1,18 +1,18 @@
 # Aysons
-My personal stuff to enhance ElvUI experience.
+My personal World of Warcraft addon to enhance ElvUI experience.
 
 ## Soundfiles
 Custom soundfiles for WeakAusras generated with [gtts-cli](https://pypi.org/project/gTTS/) and [dir2ogg](https://github.com/julian-klode/dir2ogg).
 
 ## Fonts 
-Includes the Cantarell OpenType font for cleaner UI
+Includes the Cantarell OpenType font for a cleaner UI
 
 ## Slash Commands
-Slash Commands for button macros that exceeded the 255 char limit.
+Slash commands for button macros that exceeded the 255 char limit.
 
  - `/stats` bief stat priority overview.
- - `/metoggles` toggles the selfhighlicht
- - `/myraidset` and `/myprofessionset` toggles between professions bars and the raid bar. 
+ - `/metoggles` toggles the selfhighlight.
+ - `/myraidset` and `/myprofessionset` toggles between profession bar and the raid bar configuration. 
  ```
     -- Blizzard Number   Used for      ElvUI                Blizzard API
     -----------------------------------------------------------------------------
@@ -23,6 +23,6 @@ Slash Commands for button macros that exceeded the 255 char limit.
     --  Actionbar 4     Keybinds     ElvUI Bar 3        MultiBarRight
     --  Actionbar 5     Keybinds     ElvUI Bar 4        MultiBarLeft
  ```
- - `/mycommandbar` toggles bars uses for keybind only.
- - `/rotateminimap` toggle minimap rotation.
- - `/mypitchsets` toggles through a number of predefined screen setups that move the char down from screen center to enhance field of view in raid and dungeons. 
+ - `/mycommandbar` toggles hidden bars used for keybinding only.
+ - `/rotateminimap` toggles minimap rotation.
+ - `/mypitchsets` switches through a number of predefined screen setups that move the char down from screen center to enhance field of view in raid and dungeons. 
