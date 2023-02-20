@@ -5,8 +5,8 @@ UIParent:UnregisterEvent("EXPERIMENTAL_CVAR_CONFIRMATION_NEEDED")
 
 SetCVar("CameraKeepCharacterCentered", 0)
 SetCVar("test_cameraDynamicPitch", 1)
-SetCVar("test_cameraDynamicPitchBaseFovPad", 0.45)
-SetCVar("test_cameraDynamicPitchBaseFovPadDownScale", 0.45)
+SetCVar("test_cameraDynamicPitchBaseFovPad", 0.4)
+SetCVar("test_cameraDynamicPitchBaseFovPadDownScale", 0.65)
 SetCVar("test_cameraDynamicPitchBaseFovPadFlying", 0.75)
 
 
@@ -264,11 +264,13 @@ local function ToggleMyRaidSet()
             BarNumber.ActionBars:PositionAndSizeBar("bar"..n);
             if BarNumber.db.actionbar["bar"..n].enabled == true then
                 SetCVar("FindYourselfAnywhere", "1")
+                SetCVar("SoftTargetEnemy", "3")
                 local bars, E = {2}, unpack(ElvUI);
                 E.db.actionbar["bar"..2].enabled = false;
                 E.ActionBars:PositionAndSizeBar("bar"..2);
             else
                 SetCVar("FindYourselfAnywhere", "0")
+                SetCVar("SoftTargetEnemy", "0")
             end
         end
     else
@@ -280,11 +282,13 @@ local function ToggleMyRaidSet()
             MultiBarBottomRight:Hide() 
             SetCVar("myRaidBar", "0")
             SetCVar("FindYourselfAnywhere", "0")
+            SetCVar("SoftTargetEnemy", "0")
         else
             ChangeActionBarPage("1")
             MultiBarBottomRight:Show() 
             SetCVar("myRaidBar", "1")
             SetCVar("FindYourselfAnywhere", "1")
+            SetCVar("SoftTargetEnemy", "3")
             -- SetCVar("myProfessionBar", "0")
         end
     end 
@@ -308,6 +312,7 @@ local function ToggleMyPROFESSIONSet()
             BarNumber.ActionBars:PositionAndSizeBar("bar"..n);
             if BarNumber.db.actionbar["bar"..n].enabled == true then
                 SetCVar("FindYourselfAnywhere", "0")
+                SetCVar("SoftTargetEnemy", "0")
                 local bars, E = {5}, unpack(ElvUI);
                 E.db.actionbar["bar"..5].enabled = false;
                 E.ActionBars:PositionAndSizeBar("bar"..5);
@@ -570,7 +575,7 @@ local function MYPITCHSETS()
         SetCVar("myPitch", 1)
         SetCVar("myPitchSetname", "down")
         SetCVar("nameplateOtherAtBase", 0)
-        SetCVar("test_cameraDynamicPitchBaseFovPad", 0.45)
+        SetCVar("test_cameraDynamicPitchBaseFovPad", 0.4)
         SetCVar("test_cameraDynamicPitchBaseFovPadDownScale", 0.45)
         SetCVar("test_cameraDynamicPitchBaseFovPadFlying", 0.75)
     elseif GetCVar("myPitch") == "1" then
@@ -578,8 +583,8 @@ local function MYPITCHSETS()
         SetCVar("myPitch", 2)
         SetCVar("myPitchSetname", "bottom")
         SetCVar("nameplateOtherAtBase", 0)
-        SetCVar("test_cameraDynamicPitchBaseFovPad", 0.2)
-        SetCVar("test_cameraDynamicPitchBaseFovPadDownScale", 2)
+        SetCVar("test_cameraDynamicPitchBaseFovPad", 0.4)
+        SetCVar("test_cameraDynamicPitchBaseFovPadDownScale", 0.65)
         SetCVar("test_cameraDynamicPitchBaseFovPadFlying", 0.75)
     else 
         SetCVar("test_cameraDynamicPitch", 0)
