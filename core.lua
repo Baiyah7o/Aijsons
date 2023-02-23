@@ -3,14 +3,15 @@ UIParent:UnregisterEvent("EXPERIMENTAL_CVAR_CONFIRMATION_NEEDED")
 
 -- Pitch Settings
 
+RegisterCVar("myPitch", 2)
+RegisterCVar("myPitchSetname", "bottom")
+
 SetCVar("CameraKeepCharacterCentered", 0)
-SetCVar("myPitch", 2)
-SetCVar("nameplateOtherAtBase", 0)
+SetCVar("nameplateOtherAtBase", 1)
 SetCVar("test_cameraDynamicPitch", 1)
 SetCVar("test_cameraDynamicPitchBaseFovPad", 0.4)
 SetCVar("test_cameraDynamicPitchBaseFovPadDownScale", 0.65)
 SetCVar("test_cameraDynamicPitchBaseFovPadFlying", 0.75)
-
 
 -- Script Errors
 
@@ -266,7 +267,8 @@ local function ToggleMyRaidSet()
             BarNumber.ActionBars:PositionAndSizeBar("bar"..n);
             if BarNumber.db.actionbar["bar"..n].enabled == true then
                 SetCVar("FindYourselfAnywhere", "1")
-                SetCVar("SoftTargetEnemy", "3")
+                -- SetCVar("SoftTargetEnemy", "3")
+                SetCVar("SoftTargetEnemy", "0")
                 local bars, E = {2}, unpack(ElvUI);
                 E.db.actionbar["bar"..2].enabled = false;
                 E.ActionBars:PositionAndSizeBar("bar"..2);
@@ -290,7 +292,8 @@ local function ToggleMyRaidSet()
             MultiBarBottomRight:Show() 
             SetCVar("myRaidBar", "1")
             SetCVar("FindYourselfAnywhere", "1")
-            SetCVar("SoftTargetEnemy", "3")
+            -- SetCVar("SoftTargetEnemy", "3")
+            SetCVar("SoftTargetEnemy", "0")
             -- SetCVar("myProfessionBar", "0")
         end
     end 
@@ -565,8 +568,6 @@ SlashCmdList["ROTATEMINIMAP"] = ROTATEMINIMAP
 
 -- create slash command toggle predefined pitch setups
 
-RegisterCVar("myPitch", 1)
-RegisterCVar("myPitchSetname", "center")
 
 SLASH_MYPITCHSETS1 = "/MYPITCHSETS"
 SLASH_MYPITCHSETS2 = "/MPS"
@@ -584,7 +585,7 @@ local function MYPITCHSETS()
         SetCVar("test_cameraDynamicPitch", 1)
         SetCVar("myPitch", 2)
         SetCVar("myPitchSetname", "bottom")
-        SetCVar("nameplateOtherAtBase", 0)
+        SetCVar("nameplateOtherAtBase", 1)
         SetCVar("test_cameraDynamicPitchBaseFovPad", 0.4)
         SetCVar("test_cameraDynamicPitchBaseFovPadDownScale", 0.65)
         SetCVar("test_cameraDynamicPitchBaseFovPadFlying", 0.75)
