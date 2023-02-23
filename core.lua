@@ -4,6 +4,8 @@ UIParent:UnregisterEvent("EXPERIMENTAL_CVAR_CONFIRMATION_NEEDED")
 -- Pitch Settings
 
 SetCVar("CameraKeepCharacterCentered", 0)
+SetCVar("myPitch", 2)
+SetCVar("nameplateOtherAtBase", 0)
 SetCVar("test_cameraDynamicPitch", 1)
 SetCVar("test_cameraDynamicPitchBaseFovPad", 0.4)
 SetCVar("test_cameraDynamicPitchBaseFovPadDownScale", 0.65)
