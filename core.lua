@@ -267,8 +267,7 @@ local function ToggleMyRaidSet()
             BarNumber.ActionBars:PositionAndSizeBar("bar"..n);
             if BarNumber.db.actionbar["bar"..n].enabled == true then
                 SetCVar("FindYourselfAnywhere", "1")
-                -- SetCVar("SoftTargetEnemy", "3")
-                SetCVar("SoftTargetEnemy", "0")
+                SetCVar("SoftTargetEnemy", "3")
                 local bars, E = {2}, unpack(ElvUI);
                 E.db.actionbar["bar"..2].enabled = false;
                 E.ActionBars:PositionAndSizeBar("bar"..2);
@@ -292,8 +291,7 @@ local function ToggleMyRaidSet()
             MultiBarBottomRight:Show() 
             SetCVar("myRaidBar", "1")
             SetCVar("FindYourselfAnywhere", "1")
-            -- SetCVar("SoftTargetEnemy", "3")
-            SetCVar("SoftTargetEnemy", "0")
+            SetCVar("SoftTargetEnemy", "3")
             -- SetCVar("myProfessionBar", "0")
         end
     end 
