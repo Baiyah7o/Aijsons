@@ -339,6 +339,25 @@ end
 
 SlashCmdList["MYPROFESSIONSET"] = ToggleMyPROFESSIONSet
 
+-- create slash command to toggle Haldu's Dragonflight Helper framed to actionbar bar 15
+
+SLASH_MYWEEkLYS1 = "/MYWEEkLYS"
+
+
+local function ToggleMYWEEkLYS()
+    if IsAddOnLoaded("ElvUI") then
+-- ElvUI
+        local Bars, BarNumber = {15}, unpack(ElvUI); 
+        for _, n in pairs(Bars) do 
+            local state = BarNumber.db.actionbar["bar"..n].enabled; 
+            BarNumber.db.actionbar["bar"..n].enabled = (state==false and true or false);
+            BarNumber.ActionBars:PositionAndSizeBar("bar"..n);
+        end
+    end
+end
+
+SlashCmdList["MYWEEkLYS"] = ToggleMYWEEkLYS
+
 -- edit box with class stats
  
 function StatsEditBox_Show(text)
