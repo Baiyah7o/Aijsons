@@ -1,4 +1,5 @@
 1
+10
 2
 3
 4
@@ -7,7 +8,6 @@
 7
 8
 9
-10
 Add
 Adds
 AMS
@@ -191,6 +191,7 @@ Hide behind Pillar
 High
 High Energy
 High Stacks
+High Threat
 Holy Avenger
 Ice Floes
 Icebound Fortitude
@@ -230,6 +231,7 @@ Low
 Low Health
 Low Mana
 Low Sanity
+Low Threat
 Maim
 Major Healing Potion
 Maul
@@ -384,11 +386,12 @@ Switch to Triangle
 Tail Swipe
 Tank
 Tank Swap
-Targeted
 Target Range
+Targeted
 Taunt
 Temporal Shield
 Tethered
+Threat
 Thunder Focus Tea
 Thunderstorm
 Tigereye Brew
