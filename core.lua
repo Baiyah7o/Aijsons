@@ -36,6 +36,7 @@ SetCVar("RAIDweatherDensity", 0)
 RegisterCVar("myCommandBar", 1)
 RegisterCVar("myRaidBar", 0)
 RegisterCVar("myProfessionBar", 0)
+RegisterCVar("myWeeklies", 0)
 
 -- SetCVar("myRaidBar", 0)
 -- SetCVar("myProfessionBar", 0)
@@ -269,8 +270,8 @@ local function ToggleMyRaidSet()
                 SetCVar("FindYourselfAnywhere", "1")
                 SetCVar("SoftTargetEnemy", "3")
                 local bars, E = {2}, unpack(ElvUI);
-                E.db.actionbar["bar"..2].enabled = false;
-                E.ActionBars:PositionAndSizeBar("bar"..2);
+                E.db.actionbar["bar"..13].enabled = false;
+                E.ActionBars:PositionAndSizeBar("bar"..13);
             else
                 SetCVar("FindYourselfAnywhere", "0")
                 SetCVar("SoftTargetEnemy", "0")
@@ -281,14 +282,16 @@ local function ToggleMyRaidSet()
         SetCVar("myProfessionBar", "0")
         if GetCVar("myRaidBar") == "1" then
             -- changeactionbar [actionbar:1]2
-            ChangeActionBarPage("1")
-            MultiBarBottomRight:Hide() 
+            ChangeActionBarPage("2")
+            -- MultiBar5:Hide() 
+            -- MultiBarBottomRight:Hide() 
             SetCVar("myRaidBar", "0")
             SetCVar("FindYourselfAnywhere", "0")
             SetCVar("SoftTargetEnemy", "0")
         else
+            -- MultiBar5:Hide()
+            -- MultiBarBottomRight:Show() 
             ChangeActionBarPage("1")
-            MultiBarBottomRight:Show() 
             SetCVar("myRaidBar", "1")
             SetCVar("FindYourselfAnywhere", "1")
             SetCVar("SoftTargetEnemy", "3")
@@ -308,7 +311,7 @@ SLASH_MYPROFESSIONSET1 = "/MYPROFESSIONSET"
 local function ToggleMyPROFESSIONSet()
     if IsAddOnLoaded("ElvUI") then
 -- ElvUI
-        local Bars, BarNumber = {2}, unpack(ElvUI); 
+        local Bars, BarNumber = {13}, unpack(ElvUI); 
         for _, n in pairs(Bars) do 
             local state = BarNumber.db.actionbar["bar"..n].enabled; 
             BarNumber.db.actionbar["bar"..n].enabled = (state==false and true or false);
@@ -323,17 +326,26 @@ local function ToggleMyPROFESSIONSet()
         end
     else
 -- Blizzard UI
-        if GetCVar("myProfessionBar") == "1" then
-            ChangeActionBarPage("1") 
-            SetCVar("myProfessionBar", "0")
-            SetCVar("myRaidBar", "0")
-            MultiBarBottomRight:Hide()
+        SetCVar("FindYourselfAnywhere", "0")
+        index = GetActionBarPage()
+        if index == 2 then
+            ChangeActionBarPage("1")
         else
             ChangeActionBarPage("2")
-            SetCVar("myProfessionBar", "1")
-            SetCVar("myRaidBar", "0")
-            MultiBarBottomRight:Hide()
         end
+        -- if GetCVar("myProfessionBar") == "1" then
+        --     ChangeActionBarPage("1") 
+        --     -- MultiBar5:Hide() 
+        --     SetCVar("myProfessionBar", "0")
+        --     SetCVar("myRaidBar", "0")
+        --     -- MultiBarBottomRight:Hide()
+        -- else
+        --     ChangeActionBarPage("2")
+        --     -- MultiBar5:Show() 
+        --     SetCVar("myProfessionBar", "1")
+        --     SetCVar("myRaidBar", "0")
+        --     -- MultiBarBottomRight:Hide()
+        -- end
     end
 end
 
@@ -341,10 +353,10 @@ SlashCmdList["MYPROFESSIONSET"] = ToggleMyPROFESSIONSet
 
 -- create slash command to toggle Haldu's Dragonflight Helper framed to actionbar bar 15
 
-SLASH_MYWEEkLYS1 = "/MYWEEkLYS"
+SLASH_MYWEEKLYS1 = "/MYWEEKLYS"
 
 
-local function ToggleMYWEEkLYS()
+local function ToggleMyWeelys()
     if IsAddOnLoaded("ElvUI") then
 -- ElvUI
         local Bars, BarNumber = {15}, unpack(ElvUI); 
@@ -353,10 +365,18 @@ local function ToggleMYWEEkLYS()
             BarNumber.db.actionbar["bar"..n].enabled = (state==false and true or false);
             BarNumber.ActionBars:PositionAndSizeBar("bar"..n);
         end
+    else
+        -- if GetCVar("myWeeklies") == "1" then
+        --     MultiBar7:Hide() 
+        --     SetCVar("myWeeklies", "0")
+        -- else
+        --     MultiBar7:Show() 
+        --     SetCVar("myWeeklies", "1")
+        -- end
     end
 end
 
-SlashCmdList["MYWEEkLYS"] = ToggleMYWEEkLYS
+SlashCmdList["MYWEEKLYS"] = ToggleMyWeelys
 
 -- edit box with class stats
  
@@ -551,17 +571,31 @@ local function MYCOMMANDBAR()
         end
     else
 -- Blizzard UI
-        if GetCVar("myCommandBar") == "1" then
-            MultiBarBottomLeft:Hide()
-            MultiBarRight:Hide()
-            MultiBarLeft:Hide()
-            SetCVar("myCommandBar", "0")
+        index = GetActionBarPage()
+        if index == 1 then
+            ChangeActionBarPage("3")
+        elseif index == 2 then
+            ChangeActionBarPage("3")
+        elseif index == 3 then
+            ChangeActionBarPage("4")
+        elseif index == 4 then
+            ChangeActionBarPage("5")
+        elseif index == 5 then
+            ChangeActionBarPage("6")
         else
-            MultiBarBottomLeft:Show()
-            MultiBarRight:Show()
-            MultiBarLeft:Show()
-            SetCVar("myCommandBar", "1")
+            ChangeActionBarPage("1")
         end
+        -- if GetCVar("myCommandBar") == "1" then
+        --     MultiBarBottomLeft:Hide()
+        --     MultiBarRight:Hide()
+        --     MultiBarLeft:Hide()
+        --     SetCVar("myCommandBar", "0")
+        -- else
+        --     MultiBarBottomLeft:Show()
+        --     MultiBarRight:Show()
+        --     MultiBarLeft:Show()
+        --     SetCVar("myCommandBar", "1")
+        -- end
     end
 end
 
