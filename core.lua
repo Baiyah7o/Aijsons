@@ -68,16 +68,6 @@ MyScreenMessage.anim.fadeout:SetToAlpha(0)
 MyScreenMessage.anim.fadeout:SetDuration(0.25)
 MyScreenMessage.anim.fadeout:SetOrder(2)
 
-
--- create slash command to set text and start animation
--- try: /float Hello, world!
--- SLASH_FLOAT1 = "/float"
--- SlashCmdList["FLOAT"] = function(msg)
---   MyScreenMessage.text:SetText(msg)
---   MyScreenMessage.anim:Play()
--- end
-
-
 -- create slash command to show stats
 
 SLASH_STATS1 = "/STATS"
@@ -656,4 +646,85 @@ end
 
 SlashCmdList["MYPITCHSETS"] = MYPITCHSETS
 
+-- string_split function cpied from stackoverflow
+-- https://stackoverflow.com/questions/1426954/split-string-in-lua#7615129
 
+function string_split(inputstr, sep)
+    local inputstr = inputstr .. sep
+    local idx, inc, t = 0, 1, {}
+    local idx_prev, substr
+    repeat 
+        idx_prev = idx
+        inputstr = strsub(inputstr, idx + 1, -1)    -- chop off the beginning of the string containing the match last found by strfind (or initially, nothing); keep the rest (or initially, all)
+        idx = strfind(inputstr, sep)                -- find the 0-based r_index of the first occurrence of separator 
+        if idx == nil then break end                -- quit if nothing's found
+        substr = strsub(inputstr, 0, idx)           -- extract the substring occurring before the separator (i.e., data field before the next delimiter)
+        substr = gsub(substr, sep , "")             -- eliminate control characters, separator and spaces
+        t[inc] = substr                             -- store the substring (i.e., data field)
+        inc = inc + 1                               -- iterate to next
+    until idx == nil 
+    return t
+end
+
+SLASH_MYMOUNTS1 = "/MYMOUNTS"
+SLASH_MYMOUNTS2 = "/MYM"
+
+-- sample user macro
+--  #showtooltip
+--   /cast [swimming,@player]Unending Breath
+--   /cast [mod:ctrl]Grand Expedition Yak
+--   /MYMOUNTS Cryptic Aurelid,Cliffside Wylderdrake,Honeyback Harvester,Ancient Salamanther
+
+local function MYMOUNTS(ATGUMENT)
+
+    sep = "," 
+    textarray = {}
+    textarray = string_split(ATGUMENT,sep)
+
+    count = 0                                       -- error message to chat if arg count mismatches 4
+    for _ in pairs(textarray) do count = count + 1 end
+    if count < 4 then
+        print("Missing arguments for /mymounts\n/MYMOUNTS SWIM, ADVFLY, FLY, NOFLY")
+        -- msg = "missing arguments"
+        -- MyScreenMessage.text:SetText(msg)
+        -- MyScreenMessage.anim:Play()
+        return
+    end
+
+    SWIM = textarray[1]                              
+    ADVFLY = textarray[2] 
+    FLY= textarray[3]
+    NOFLY = textarray[4]
+
+    if IsIndoors() then
+        return
+    elseif IsSubmerged() then 
+        if IsMounted() then   
+            if IsFlyableArea() then
+                CastSpellByName(FLY)            -- if already mounted mount to flyable mount 
+            elseif IsAdvancedFlyableArea() then
+                CastSpellByName(ADVFLY)         -- or dragonride mount 
+                ChangeActionBarPage("1")
+            else
+                Dismount()
+            end
+        else
+            CastSpellByName(SWIM)               -- cast swimming mount 
+        end
+    elseif IsMounted() then
+        if IsFlying() then                      -- if flying do not dismount :D
+            return 
+        else
+            Dismount()
+        end
+    elseif IsFlyableArea() then
+        CastSpellByName(FLY)                    -- regular flyable
+    elseif IsAdvancedFlyableArea() then
+        CastSpellByName(ADVFLY)                 -- or dragonride mount, change actionbar page
+        ChangeActionBarPage("1")
+    else
+        CastSpellByName(NOFLY)                  -- noflyable  
+    end
+end
+
+SlashCmdList["MYMOUNTS"] = MYMOUNTS
