@@ -33,10 +33,10 @@ SetCVar("RAIDweatherDensity", 0)
 
 -- own cvars
 
-RegisterCVar("myCommandBar", 1)
-RegisterCVar("myRaidBar", 0)
-RegisterCVar("myProfessionBar", 0)
-RegisterCVar("myWeeklies", 0)
+-- RegisterCVar("myCommandBar", 1)
+-- RegisterCVar("myRaidBar", 0)
+-- RegisterCVar("myProfessionBar", 0)
+-- RegisterCVar("myWeeklies", 0)
 
 -- SetCVar("myRaidBar", 0)
 -- SetCVar("myProfessionBar", 0)
@@ -102,10 +102,10 @@ local function GetStatsDistrib()
         -- Retribution Paladin, Mastery > Haste = Versatility > Crit
         MyStatsText =  MyStatsText .. class .. ' (Retribution Paladin, ID ' .. id ..')\n'
         MyStatsText =  MyStatsText .. "Strength ("  .. UnitStat("player",1)                        .. ") > "
-        MyStatsText =  MyStatsText .. "Haste ("     .. GetCombatRating(CR_HASTE_SPELL)             .. ") = "
-        MyStatsText =  MyStatsText .. "Mastery ("   .. GetCombatRating(CR_MASTERY)                 .. ") = "
         MyStatsText =  MyStatsText .. "Vers ("      .. GetCombatRating(CR_VERSATILITY_DAMAGE_DONE) .. ") > "
-        MyStatsText =  MyStatsText .. "Crit ("      .. GetCombatRating(CR_CRIT_SPELL)              .. ")\n "
+        MyStatsText =  MyStatsText .. "Crit ("      .. GetCombatRating(CR_CRIT_SPELL)              .. ") ≥ "
+        MyStatsText =  MyStatsText .. "Mastery ("   .. GetCombatRating(CR_MASTERY)                 .. ") > "
+        MyStatsText =  MyStatsText .. "Haste ("     .. GetCombatRating(CR_HASTE_SPELL)             .. ") \n  "
         MyStatsText =  MyStatsText .. "\nAbove stats for " .. class .. " shown ordered according to:\n" 
         MyStatsText =  MyStatsText .. " https://www.wowhead.com/guide/classes/paladin/retribution/stat-priority-pve-dps\n" 
         MyStatsText =  MyStatsText .. " https://www.method.gg/guides/retribution-paladin/stats-races-and-consumables\n" 
@@ -114,10 +114,10 @@ local function GetStatsDistrib()
         MyStatsText =  MyStatsText .. class .. ' (Guardian Druid, ID ' .. id ..')\n'
         MyStatsText =  MyStatsText .. '\nWhen comparing items of similar ilvl, you can use the following stat priority for defense:\n\n'
         MyStatsText =  MyStatsText .. "Agility ("   .. UnitStat("player",2)                        .. ") > "
-        MyStatsText =  MyStatsText .. "Vers ("      .. GetCombatRating(CR_VERSATILITY_DAMAGE_DONE) .. ") > "
+        MyStatsText =  MyStatsText .. "Vers ("      .. GetCombatRating(CR_VERSATILITY_DAMAGE_DONE) .. ") = "
         MyStatsText =  MyStatsText .. "Haste ("     .. GetCombatRating(CR_HASTE_SPELL)             .. ") > "
-        MyStatsText =  MyStatsText .. "Crit ("      .. GetCombatRating(CR_CRIT_SPELL)              .. ") > "
-        MyStatsText =  MyStatsText .. "Mastery ("   .. GetCombatRating(CR_MASTERY)                 .. ")\n "
+        MyStatsText =  MyStatsText .. "Mastery ("   .. GetCombatRating(CR_MASTERY)                 .. ") > "
+        MyStatsText =  MyStatsText .. "Crit ("      .. GetCombatRating(CR_CRIT_SPELL)              .. ")\n"
         MyStatsText =  MyStatsText .. "\nAbove stats for " .. class .. " shown ordered according to:\n" 
         MyStatsText =  MyStatsText .. " https://www.wowhead.com/guide/classes/druid/guardian/stat-priority-pve-tank\n" 
         MyStatsText =  MyStatsText .. " https://www.method.gg/guides/guardian-druid/stats-races-and-consumables\n" 
@@ -127,9 +127,8 @@ local function GetStatsDistrib()
         MyStatsText =  MyStatsText .. "Intellect (" .. UnitStat("player",4)                        .. ") = "
         MyStatsText =  MyStatsText .. "Haste ("     .. GetCombatRating(CR_HASTE_SPELL)             .. ") > "
         MyStatsText =  MyStatsText .. "Mastery ("   .. GetCombatRating(CR_MASTERY)                 .. ") > "
-        MyStatsText =  MyStatsText .. "Crit ("      .. GetCombatRating(CR_CRIT_SPELL)              .. ") >= "
-        MyStatsText =  MyStatsText .. "Vers ("      .. GetCombatRating(CR_VERSATILITY_DAMAGE_DONE) .. ") \n\n "
-        
+        MyStatsText =  MyStatsText .. "Crit ("      .. GetCombatRating(CR_CRIT_SPELL)              .. ") ≥ "
+        MyStatsText =  MyStatsText .. "Vers ("      .. GetCombatRating(CR_VERSATILITY_DAMAGE_DONE) .. ")\n "
         MyStatsText =  MyStatsText .. class .. ' (Restoration Druid, for m+:, ID ' .. id ..')\n'
         MyStatsText =  MyStatsText .. "Intellect (" .. UnitStat("player",4)                        .. ") > "
         MyStatsText =  MyStatsText .. "Haste ("     .. GetCombatRating(CR_HASTE_SPELL)             .. ") > "
@@ -142,26 +141,24 @@ local function GetStatsDistrib()
     elseif id == 250 then
         -- Death Knight - Blood, Haste > Versatility > Critical Strike > Mastery
         MyStatsText =  MyStatsText .. class .. ' (Blood Death Knight, ID ' .. id ..')\n'
-        MyStatsText =  MyStatsText .. '\nItem level over all secondary stats. When same item level ranking could be:\n\n'
-        MyStatsText =  MyStatsText .. "Haste ("     .. GetCombatRating(CR_HASTE_SPELL)             .. ") >= "
+        MyStatsText =  MyStatsText .. '\nItem level overranks all secondary stats. When same item level ranking might be:\n\n'
+        MyStatsText =  MyStatsText .. "Haste ("     .. GetCombatRating(CR_HASTE_SPELL)             .. ") ≥ "
         MyStatsText =  MyStatsText .. "Mastery ("   .. GetCombatRating(CR_MASTERY)                 .. ") =  "
-        MyStatsText =  MyStatsText .. "Crit ("      .. GetCombatRating(CR_CRIT_SPELL)              .. ") >= "
+        MyStatsText =  MyStatsText .. "Crit ("      .. GetCombatRating(CR_CRIT_SPELL)              .. ") ≥ "
         MyStatsText =  MyStatsText .. "Vers ("      .. GetCombatRating(CR_VERSATILITY_DAMAGE_DONE) .. ") \n "
-        
-        
         MyStatsText =  MyStatsText .. "\nAbove stats for " .. class .. " shown ordered according to:\n" 
         MyStatsText =  MyStatsText .. " https://www.wowhead.com/guide/classes/death-knight/blood/stat-priority-pve-tank\n" 
         MyStatsText =  MyStatsText .. " https://www.method.gg/guides/blood-death-knight/stats-races-and-consumables\n" 
     elseif id == 253 then
         -- Beats Mastery Hunter, Critical Strike > Haste > Versatility > Mastery
         MyStatsText =  MyStatsText .. class .. ' (Beats Mastery Hunter, ID ' .. id ..')\n'
-        MyStatsText =  MyStatsText .. "\nSingle Target Stat Priority:\n\n"
+        MyStatsText =  MyStatsText .. "\nSingle Target Stat Priority:\n"
         MyStatsText =  MyStatsText .. "Agility ("   .. UnitStat("player",2)                        .. ") > "
-        MyStatsText =  MyStatsText .. "Crit ("      .. GetCombatRating(CR_CRIT_SPELL)              .. ") > "
-        MyStatsText =  MyStatsText .. "Vers ("      .. GetCombatRating(CR_VERSATILITY_DAMAGE_DONE) .. ") > "
+        MyStatsText =  MyStatsText .. "Crit ("      .. GetCombatRating(CR_CRIT_SPELL)              .. ") ≥ "
         MyStatsText =  MyStatsText .. "Haste ("     .. GetCombatRating(CR_HASTE_SPELL)             .. ") > "
-        MyStatsText =  MyStatsText .. "Mastery ("   .. GetCombatRating(CR_MASTERY)                 .. ")\n "
-        MyStatsText =  MyStatsText .. "\nAoE Stat Priority:\n\n"
+        MyStatsText =  MyStatsText .. "Mastery ("   .. GetCombatRating(CR_MASTERY)                 .. ") > "
+        MyStatsText =  MyStatsText .. "Vers ("      .. GetCombatRating(CR_VERSATILITY_DAMAGE_DONE) .. ")\n "
+        MyStatsText =  MyStatsText .. "\nAoE Stat Priority:\n"
         MyStatsText =  MyStatsText .. "Agility ("   .. UnitStat("player",2)                        .. ") > "
         MyStatsText =  MyStatsText .. "Mastery ("   .. GetCombatRating(CR_MASTERY)                 .. ") > "
         MyStatsText =  MyStatsText .. "Haste ("     .. GetCombatRating(CR_HASTE_SPELL)             .. ") > "
@@ -174,14 +171,21 @@ local function GetStatsDistrib()
         -- Intellect / Item Level >>> Haste > Mastery = Crit > Versatility
         MyStatsText =  MyStatsText .. class .. ' (Demonology Warlock, ID ' .. id ..')\n'
         MyStatsText =  MyStatsText .. '\nItem level increases intellect and stamina. When at the same item level the priority should be:\n\n'
+        MyStatsText =  MyStatsText .. "\nDemonbolt Builds (Sacrificed Souls + Fel Covenant talented):\n"
         MyStatsText =  MyStatsText .. "Intellect (" .. UnitStat("player",4)                        .. ") > "
         MyStatsText =  MyStatsText .. "Haste ("     .. GetCombatRating(CR_HASTE_SPELL)             .. ") > "
-        MyStatsText =  MyStatsText .. "Mastery ("   .. GetCombatRating(CR_MASTERY)                 .. ") = "
+        MyStatsText =  MyStatsText .. "Crit ("      .. GetCombatRating(CR_CRIT_SPELL)              .. ") = "
+        MyStatsText =  MyStatsText .. "Vers ("      .. GetCombatRating(CR_VERSATILITY_DAMAGE_DONE) .. ") = "
+        MyStatsText =  MyStatsText .. "Mastery ("   .. GetCombatRating(CR_MASTERY)                 .. ")\n "
+        MyStatsText =  MyStatsText .. "\nNon-Demonbolt builds:\n"
+        MyStatsText =  MyStatsText .. "Intellect (" .. UnitStat("player",4)                        .. ") > "
+        MyStatsText =  MyStatsText .. "Mastery ("   .. GetCombatRating(CR_MASTERY)                 .. ") > "
+        MyStatsText =  MyStatsText .. "Haste ("     .. GetCombatRating(CR_HASTE_SPELL)             .. ") > "
+        MyStatsText =  MyStatsText .. "Crit ("      .. GetCombatRating(CR_CRIT_SPELL)              .. ") > "
         MyStatsText =  MyStatsText .. "Vers ("      .. GetCombatRating(CR_VERSATILITY_DAMAGE_DONE) .. ")\n "
-        MyStatsText =  MyStatsText .. "Crit ("      .. GetCombatRating(CR_CRIT_SPELL)              .. ") is irrelevant\n "
         MyStatsText =  MyStatsText .. "\nAbove stats for " .. class .. " shown ordered according to:\n" 
         MyStatsText =  MyStatsText .. " https://www.wowhead.com/guide/classes/warlock/demonology/stat-priority-pve-dps\n" 
-        MyStatsText =  MyStatsText .. " https://www.method.gg/guides/demonology-warlock/stats-races-and-consumables\n" 
+        MyStatsText =  MyStatsText .. " https://www.method.gg/guides/demonology-warlock/stats-races-and-consumables\n\n" 
     elseif id == 1468 then
         -- Intellect / Item Level >>> Haste > Mastery = Crit > Versatility
         MyStatsText =  MyStatsText .. class .. ' (Preservation Evoker, ID ' .. id ..')\n'
@@ -197,6 +201,7 @@ local function GetStatsDistrib()
         MyStatsText =  MyStatsText .. "Mastery ("   .. GetCombatRating(CR_MASTERY)                 .. ") \n "
         MyStatsText =  MyStatsText .. "\nAbove stats for " .. class .. " shown ordered according to:\n" 
         MyStatsText =  MyStatsText .. " https://www.wowhead.com/ptr/guide/classes/evoker/preservation/stat-priority-pve-healer\n" 
+        MyStatsText =  MyStatsText .. " https://www.method.gg/guides/preservation-evoker/stats-races-and-consumables\n" 
     else
         MyStatsText =  MyStatsText .. class .. " (not yet implemented)\n" 
     end
@@ -237,13 +242,15 @@ SLASH_MYRAIDSET1 = "/MYRAIDSET"
 
     -- Blizzard Number   Used for      ElvUI                Blizzard API
     -----------------------------------------------------------------------------
-    --  Actionbar 1.1   Cooldowns    ElvUI Bar 1        (Primary Action Bar 1)
-    --  Actionbar 1.2   Profession   ElvUI Bar 2        (Primary Action Bar 2)
-    --  Actionbar 2     Keybinds     ElvUI Bar 6        MultiBarBottomLeft
-    --  Actionbar 3     Raid         ElvUI Bar 5        MultiBarBottomRight
-    --  Actionbar 4     Keybinds     ElvUI Bar 3        MultiBarRight
-    --  Actionbar 5     Keybinds     ElvUI Bar 4        MultiBarLeft
-
+    --  Actionbar 1.1   Raid         ElvUI Bar  1        Primary Action Bar 1   OK
+    --  Actionbar 1.2   Profession   ElvUI Bar  2        Primary Action Bar 2   > BAR 15
+    --  Actionbar 2     Keybinds     ElvUI Bar  6        MultiBarBottomLeft
+    --  Actionbar 3     Cooldowns    ElvUI Bar  5        MultiBarBottomRight
+    --  Actionbar 4     Keybinds     ElvUI Bar  3        MultiBarRight
+    --  Actionbar 5     Keybinds     ElvUI Bar  4        MultiBarLeft
+    --  Actionbar 6     Keybinds     ElvUI Bar 13        MultiBar5
+    --  Actionbar 7     Keybinds     ElvUI Bar 14        MultiBar6
+    --  Actionbar 8     Keybinds     ElvUI Bar 15        MultiBar7
 
     
 -- create funtion to toggle raid actionbars and disable professions bar
@@ -251,7 +258,8 @@ SLASH_MYRAIDSET1 = "/MYRAIDSET"
 local function ToggleMyRaidSet()
     if IsAddOnLoaded("ElvUI") then
         -- ElvUI
-        local Bars, BarNumber = {5}, unpack(ElvUI); 
+        -- ElvUI
+        local Bars, BarNumber = {1}, unpack(ElvUI); 
         for _, n in pairs(Bars) do 
             local state = BarNumber.db.actionbar["bar"..n].enabled; 
             BarNumber.db.actionbar["bar"..n].enabled = (state==false and true or false);
@@ -259,9 +267,9 @@ local function ToggleMyRaidSet()
             if BarNumber.db.actionbar["bar"..n].enabled == true then
                 SetCVar("FindYourselfAnywhere", "1")
                 SetCVar("SoftTargetEnemy", "3")
-                local bars, E = {2}, unpack(ElvUI);
-                E.db.actionbar["bar"..13].enabled = false;
-                E.ActionBars:PositionAndSizeBar("bar"..13);
+                local bars, E = {15}, unpack(ElvUI);
+                E.db.actionbar["bar"..15].enabled = false;
+                E.ActionBars:PositionAndSizeBar("bar"..15);
             else
                 SetCVar("FindYourselfAnywhere", "0")
                 SetCVar("SoftTargetEnemy", "0")
@@ -269,23 +277,18 @@ local function ToggleMyRaidSet()
         end
     else
     -- Blizzard UI
-        SetCVar("myProfessionBar", "0")
-        if GetCVar("myRaidBar") == "1" then
-            -- changeactionbar [actionbar:1]2
-            ChangeActionBarPage("2")
-            -- MultiBar5:Hide() 
-            -- MultiBarBottomRight:Hide() 
-            SetCVar("myRaidBar", "0")
-            SetCVar("FindYourselfAnywhere", "0")
-            SetCVar("SoftTargetEnemy", "0")
-        else
-            -- MultiBar5:Hide()
-            -- MultiBarBottomRight:Show() 
+        -- SetCVar("myProfessionBar", "0")
+        index = GetActionBarPage()
+        if index == 2 then
             ChangeActionBarPage("1")
-            SetCVar("myRaidBar", "1")
+            -- SetCVar("myRaidBar", "1")
             SetCVar("FindYourselfAnywhere", "1")
             SetCVar("SoftTargetEnemy", "3")
-            -- SetCVar("myProfessionBar", "0")
+        else
+            ChangeActionBarPage("2")
+            -- SetCVar("myRaidBar", "0")
+            SetCVar("FindYourselfAnywhere", "0")
+            SetCVar("SoftTargetEnemy", "0")
         end
     end 
 end
@@ -301,17 +304,29 @@ SLASH_MYPROFESSIONSET1 = "/MYPROFESSIONSET"
 local function ToggleMyPROFESSIONSet()
     if IsAddOnLoaded("ElvUI") then
 -- ElvUI
-        local Bars, BarNumber = {13}, unpack(ElvUI); 
+        local Bars, BarNumber = {15}, unpack(ElvUI); 
         for _, n in pairs(Bars) do 
             local state = BarNumber.db.actionbar["bar"..n].enabled; 
             BarNumber.db.actionbar["bar"..n].enabled = (state==false and true or false);
             BarNumber.ActionBars:PositionAndSizeBar("bar"..n);
+            if IsMounted() then
+                local bars, E = {1}, unpack(ElvUI);
+                E.db.actionbar["bar"..1].enabled = false;
+                E.ActionBars:PositionAndSizeBar("bar"..1);
+            end
             if BarNumber.db.actionbar["bar"..n].enabled == true then
                 SetCVar("FindYourselfAnywhere", "0")
                 SetCVar("SoftTargetEnemy", "0")
-                local bars, E = {5}, unpack(ElvUI);
-                E.db.actionbar["bar"..5].enabled = false;
-                E.ActionBars:PositionAndSizeBar("bar"..5);
+                if IsMounted() then
+                    local bars, E = {1}, unpack(ElvUI);
+                    E.db.actionbar["bar"..1].enabled = true;
+                    E.ActionBars:PositionAndSizeBar("bar"..1);
+                else
+                    local bars, E = {1}, unpack(ElvUI);
+                    E.db.actionbar["bar"..1].enabled = false;
+                    E.ActionBars:PositionAndSizeBar("bar"..1);
+                end
+
             end
         end
     else
@@ -342,32 +357,30 @@ end
 SlashCmdList["MYPROFESSIONSET"] = ToggleMyPROFESSIONSet
 
 -- create slash command to toggle Haldu's Dragonflight Helper framed to actionbar bar 15
+-- obsolete, WA visibilty toggle bound to objevtive frames  (ObjectiveTrackerBlocksFrame)
 
-SLASH_MYWEEKLYS1 = "/MYWEEKLYS"
+-- SLASH_MYWEEKLYS1 = "/MYWEEKLYS"
 
-
-local function ToggleMyWeelys()
-    if IsAddOnLoaded("ElvUI") then
--- ElvUI
-        local Bars, BarNumber = {15}, unpack(ElvUI); 
-        for _, n in pairs(Bars) do 
-            local state = BarNumber.db.actionbar["bar"..n].enabled; 
-            BarNumber.db.actionbar["bar"..n].enabled = (state==false and true or false);
-            BarNumber.ActionBars:PositionAndSizeBar("bar"..n);
-        end
-    else
-        -- if GetCVar("myWeeklies") == "1" then
-        --     MultiBar7:Hide() 
-        --     SetCVar("myWeeklies", "0")
-        -- else
-        --     MultiBar7:Show() 
-        --     SetCVar("myWeeklies", "1")
-        -- end
-    end
-end
-
-SlashCmdList["MYWEEKLYS"] = ToggleMyWeelys
-
+-- local function ToggleMyWeelys()
+--     if IsAddOnLoaded("ElvUI") then
+-- -- ElvUI
+--         local Bars, BarNumber = {15}, unpack(ElvUI); 
+--         for _, n in pairs(Bars) do 
+--             local state = BarNumber.db.actionbar["bar"..n].enabled; 
+--             BarNumber.db.actionbar["bar"..n].enabled = (state==false and true or false);
+--             BarNumber.ActionBars:PositionAndSizeBar("bar"..n);
+--         end
+--     else
+--         -- if GetCVar("myWeeklies") == "1" then
+--         --     MultiBar7:Hide() 
+--         --     SetCVar("myWeeklies", "0")
+--         -- else
+--         --     MultiBar7:Show() 
+--         --     SetCVar("myWeeklies", "1")
+--         -- end
+--     end
+-- end
+-- SlashCmdList["MYWEEKLYS"] = ToggleMyWeelys
 -- edit box with class stats
  
 function StatsEditBox_Show(text)
@@ -378,11 +391,12 @@ function StatsEditBox_Show(text)
         
         FrameAysons:SetBackdrop({
             bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background",
-            edgeFile = "Interface\\PVPFrame\\UI-Character-PVP-Highlight", -- this one is neat
+            -- edgeFile = "Interface\\PVPFrame\\UI-Character-PVP-Highlight", -- this one is neat
+            edgeFile = "Interface\\DialogFrame\\UI-DialogBox-Border",
             edgeSize = 16,
-            insets = { left = 8, right = 6, top = 8, bottom = 8 },
+            -- insets = { left = 8, right = 6, top = 8, bottom = 8 },
         })
-        FrameAysons:SetBackdropBorderColor(0, .44, .87, 0.5) -- darkblue
+        -- FrameAysons:SetBackdropBorderColor(0, .44, .87, 0.5) -- darkblue
         
         -- Movable
         FrameAysons:SetMovable(true)
@@ -618,7 +632,7 @@ local function MYPITCHSETS()
         SetCVar("test_cameraDynamicPitch", 1)
         SetCVar("myPitch", 1)
         SetCVar("myPitchSetname", "down")
-        SetCVar("nameplateOtherAtBase", 0)
+        SetCVar("nameplateOtherAtBase", 2)  -- 0 over unit, default
         SetCVar("test_cameraDynamicPitchBaseFovPad", 0.4)
         SetCVar("test_cameraDynamicPitchBaseFovPadDownScale", 0.45)
         SetCVar("test_cameraDynamicPitchBaseFovPadFlying", 0.75)
@@ -626,7 +640,7 @@ local function MYPITCHSETS()
         SetCVar("test_cameraDynamicPitch", 1)
         SetCVar("myPitch", 2)
         SetCVar("myPitchSetname", "bottom")
-        SetCVar("nameplateOtherAtBase", 1)
+        SetCVar("nameplateOtherAtBase", 2)  -- 2 under unit
         SetCVar("test_cameraDynamicPitchBaseFovPad", 0.4)
         SetCVar("test_cameraDynamicPitchBaseFovPadDownScale", 0.65)
         SetCVar("test_cameraDynamicPitchBaseFovPadFlying", 0.75)
@@ -634,7 +648,7 @@ local function MYPITCHSETS()
         SetCVar("test_cameraDynamicPitch", 0)
         SetCVar("myPitch", 0)
         SetCVar("myPitchSetname", "centered")
-        SetCVar("nameplateOtherAtBase", 2)
+        SetCVar("nameplateOtherAtBase", 2)  -- 2 under unit
         SetCVar("test_cameraDynamicPitchBaseFovPad", 0.4)
         SetCVar("test_cameraDynamicPitchBaseFovPadDownScale", 0.25)
         SetCVar("test_cameraDynamicPitchBaseFovPadFlying", 0.75)
@@ -675,14 +689,14 @@ SLASH_MYMOUNTS2 = "/MYM"
 --   /cast [mod:ctrl]Grand Expedition Yak
 --   /MYMOUNTS Cryptic Aurelid,Cliffside Wylderdrake,Honeyback Harvester,Ancient Salamanther
 
-local function MYMOUNTS(ATGUMENT)
+local function MYMOUNTS(INPUTSRING)
 
     sep = "," 
-    textarray = {}
-    textarray = string_split(ATGUMENT,sep)
+    InputArray = {}
+    InputArray = string_split(INPUTSRING,sep)
 
     count = 0                                       -- error message to chat if arg count mismatches 4
-    for _ in pairs(textarray) do count = count + 1 end
+    for _ in pairs(InputArray) do count = count + 1 end
     if count < 4 then
         print("Missing arguments for /mymounts\n/MYMOUNTS SWIM, ADVFLY, FLY, NOFLY")
         -- msg = "missing arguments"
@@ -691,10 +705,10 @@ local function MYMOUNTS(ATGUMENT)
         return
     end
 
-    SWIM = textarray[1]                              
-    ADVFLY = textarray[2] 
-    FLY= textarray[3]
-    NOFLY = textarray[4]
+    SWIM = InputArray[1]                              
+    ADVFLY = InputArray[2] 
+    FLY= InputArray[3]
+    NOFLY = InputArray[4]
 
     if IsIndoors() then
         return
@@ -704,9 +718,27 @@ local function MYMOUNTS(ATGUMENT)
                 CastSpellByName(FLY)            -- if already mounted mount to flyable mount 
             elseif IsAdvancedFlyableArea() then
                 CastSpellByName(ADVFLY)         -- or dragonride mount 
-                ChangeActionBarPage("1")
+                -- ChangeActionBarPage("1")
+                if IsAddOnLoaded("ElvUI") then
+                    -- ElvUI
+                    local bars, E = {1}, unpack(ElvUI);
+                    E.db.actionbar["bar".. 1].enabled = true;
+                    E.ActionBars:PositionAndSizeBar("bar" .. 1);
+                else
+                    -- Blizzard UI
+                    ChangeActionBarPage("1")
+                end
             else
                 Dismount()
+                if IsAddOnLoaded("ElvUI") then
+                    -- ElvUI
+                    local bars, E = {1}, unpack(ElvUI);
+                    E.db.actionbar["bar".. 1].enabled = true;
+                    E.ActionBars:PositionAndSizeBar("bar" .. 1);
+                else
+                    -- Blizzard UI
+                    ChangeActionBarPage("1")
+                end
             end
         else
             CastSpellByName(SWIM)               -- cast swimming mount 
@@ -716,12 +748,30 @@ local function MYMOUNTS(ATGUMENT)
             return 
         else
             Dismount()
+            if IsAddOnLoaded("ElvUI") then
+                 -- ElvUI
+                local bars, E = {1}, unpack(ElvUI);
+                E.db.actionbar["bar".. 1].enabled = true;
+                E.ActionBars:PositionAndSizeBar("bar" .. 1);
+            else
+                -- Blizzard UI
+                ChangeActionBarPage("1")
+            end
         end
     elseif IsFlyableArea() then
         CastSpellByName(FLY)                    -- regular flyable
     elseif IsAdvancedFlyableArea() then
         CastSpellByName(ADVFLY)                 -- or dragonride mount, change actionbar page
-        ChangeActionBarPage("1")
+        -- ChangeActionBarPage("1")
+        if IsAddOnLoaded("ElvUI") then
+            -- ElvUI
+            local bars, E = {1}, unpack(ElvUI);
+            E.db.actionbar["bar".. 1].enabled = true;
+            E.ActionBars:PositionAndSizeBar("bar" .. 1);
+            else
+                -- Blizzard UI
+                ChangeActionBarPage("1")
+            end
     else
         CastSpellByName(NOFLY)                  -- noflyable  
     end
