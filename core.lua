@@ -82,13 +82,27 @@ local function GetStatsDistrib()
     
     -- https://wowpedia.fandom.com/wiki/API_GetSpecializationInfo
 
+    -- Death Knight    196 30  58  0.77    0.12    0.23    #C41E3A Red
+    -- Demon Hunter    163 48  201 0.64    0.19    0.79    #A330C9 Dark Magenta
+    -- Druid           255 124 10  1.00    0.49    0.04    #FF7C0A Orange
+    -- Evoker          51  147 127 0.20    0.58    0.50    #33937F Dark Emerald
+    -- Hunter          170 211 114 0.67    0.83    0.45    #AAD372 Pistachio
+    -- Mage            63  199 235 0.25    0.78    0.92    #3FC7EB Light Blue
+    -- Monk            0   255 152 0.00    1.00    0.60    #00FF98 Spring Green
+    -- Paladin         244 140 186 0.96    0.55    0.73    #F48CBA Pink
+    -- Priest          255 255 255 1.00    1.00    1.00    #FFFFFF White*
+    -- Rogue           255 244 104 1.00    0.96    0.41    #FFF468 Yellow*
+    -- Shaman          0   112 221 0.00    0.44    0.87    #0070DD Blue
+    -- Warlock         135 136 238 0.53    0.53    0.93    #8788EE Purple
+    -- Warrior         198 155 109 0.78    0.61    0.43    #C69B6D Tan
+
     local id = globalSpecID
     local MyStatsText = ''
 
     -- MyStatsText =  MyStatsText .. id .. "\n"
     if id == 267 then
         -- Destruction Warlock, Haste > Crit > Mastery > Versatility
-        MyStatsText =  MyStatsText .. class .. ' (Destruction, ID ' .. id ..')\n'
+        MyStatsText =  MyStatsText .. "|cFF8788EE".. class .."|r".. ' (Destruction, ID ' .. id ..')\n'
         MyStatsText =  MyStatsText .. '\nItem level increases intellect and stamina. When at the same item level the priority should be:\n\n'
         MyStatsText =  MyStatsText .. "Intellect (" .. UnitStat("player",4)                       .. ") > "
         MyStatsText =  MyStatsText .. "Haste ("     .. GetCombatRating(CR_HASTE_SPELL)             .. ") > "
@@ -100,7 +114,7 @@ local function GetStatsDistrib()
         MyStatsText =  MyStatsText .. " https://www.method.gg/guides/destruction-warlock/stats-races-and-consumables\n" 
     elseif id == 70 then
         -- Retribution Paladin, Mastery > Haste = Versatility > Crit
-        MyStatsText =  MyStatsText .. class .. ' (Retribution Paladin, ID ' .. id ..')\n'
+        MyStatsText =  MyStatsText .. "|cFFF48CBA".. class .."|r".. ' (Retribution Paladin, ID ' .. id ..')\n'
         MyStatsText =  MyStatsText .. "Strength ("  .. UnitStat("player",1)                        .. ") > "
         MyStatsText =  MyStatsText .. "Vers ("      .. GetCombatRating(CR_VERSATILITY_DAMAGE_DONE) .. ") > "
         MyStatsText =  MyStatsText .. "Crit ("      .. GetCombatRating(CR_CRIT_SPELL)              .. ") ≥ "
@@ -111,7 +125,7 @@ local function GetStatsDistrib()
         MyStatsText =  MyStatsText .. " https://www.method.gg/guides/retribution-paladin/stats-races-and-consumables\n" 
     elseif id == 104 then
         -- Guardian Druid, Versatility > Mastery >= Haste > Crit
-        MyStatsText =  MyStatsText .. class .. ' (Guardian Druid, ID ' .. id ..')\n'
+        MyStatsText =  MyStatsText .. "|cFFFF7C0A".. class .."|r".. ' (Guardian Druid, ID ' .. id ..')\n'
         MyStatsText =  MyStatsText .. '\nWhen comparing items of similar ilvl, you can use the following stat priority for defense:\n\n'
         MyStatsText =  MyStatsText .. "Agility ("   .. UnitStat("player",2)                        .. ") > "
         MyStatsText =  MyStatsText .. "Vers ("      .. GetCombatRating(CR_VERSATILITY_DAMAGE_DONE) .. ") = "
@@ -123,13 +137,13 @@ local function GetStatsDistrib()
         MyStatsText =  MyStatsText .. " https://www.method.gg/guides/guardian-druid/stats-races-and-consumables\n" 
     elseif id == 105 then
         -- Restoration Druid, Versatility > Mastery >= Haste > Crit
-        MyStatsText =  MyStatsText .. class .. ' (Restoration Druid, for raiding:, ID ' .. id ..')\n'
+        MyStatsText =  MyStatsText .. "|cFFFF7C0A".. class .."|r".. ' (Restoration Druid, for raiding:, ID ' .. id ..')\n'
         MyStatsText =  MyStatsText .. "Intellect (" .. UnitStat("player",4)                        .. ") = "
         MyStatsText =  MyStatsText .. "Haste ("     .. GetCombatRating(CR_HASTE_SPELL)             .. ") > "
         MyStatsText =  MyStatsText .. "Mastery ("   .. GetCombatRating(CR_MASTERY)                 .. ") > "
         MyStatsText =  MyStatsText .. "Crit ("      .. GetCombatRating(CR_CRIT_SPELL)              .. ") ≥ "
         MyStatsText =  MyStatsText .. "Vers ("      .. GetCombatRating(CR_VERSATILITY_DAMAGE_DONE) .. ")\n "
-        MyStatsText =  MyStatsText .. class .. ' (Restoration Druid, for m+:, ID ' .. id ..')\n'
+        MyStatsText =  MyStatsText .. "|cFF".. class .."|r".. ' (Restoration Druid, for m+:, ID ' .. id ..')\n'
         MyStatsText =  MyStatsText .. "Intellect (" .. UnitStat("player",4)                        .. ") > "
         MyStatsText =  MyStatsText .. "Haste ("     .. GetCombatRating(CR_HASTE_SPELL)             .. ") > "
         MyStatsText =  MyStatsText .. "Vers ("      .. GetCombatRating(CR_VERSATILITY_DAMAGE_DONE) .. ") >="
@@ -140,7 +154,7 @@ local function GetStatsDistrib()
         MyStatsText =  MyStatsText .. " https://www.method.gg/guides/restoration-druid/stats-races-and-consumables\n" 
     elseif id == 250 then
         -- Death Knight - Blood, Haste > Versatility > Critical Strike > Mastery
-        MyStatsText =  MyStatsText .. class .. ' (Blood Death Knight, ID ' .. id ..')\n'
+        MyStatsText =  MyStatsText .. "|cFFC41E3A".. class .."|r".. ' (Blood Death Knight, ID ' .. id ..')\n'
         MyStatsText =  MyStatsText .. '\nItem level overranks all secondary stats. When same item level ranking might be:\n\n'
         MyStatsText =  MyStatsText .. "Haste ("     .. GetCombatRating(CR_HASTE_SPELL)             .. ") ≥ "
         MyStatsText =  MyStatsText .. "Mastery ("   .. GetCombatRating(CR_MASTERY)                 .. ") =  "
@@ -151,7 +165,7 @@ local function GetStatsDistrib()
         MyStatsText =  MyStatsText .. " https://www.method.gg/guides/blood-death-knight/stats-races-and-consumables\n" 
     elseif id == 253 then
         -- Beats Mastery Hunter, Critical Strike > Haste > Versatility > Mastery
-        MyStatsText =  MyStatsText .. class .. ' (Beats Mastery Hunter, ID ' .. id ..')\n'
+        MyStatsText =  MyStatsText .. "|cFFAAD372".. class .."|r".. ' (Beats Mastery Hunter, ID ' .. id ..')\n'
         MyStatsText =  MyStatsText .. "\nSingle Target Stat Priority:\n"
         MyStatsText =  MyStatsText .. "Agility ("   .. UnitStat("player",2)                        .. ") > "
         MyStatsText =  MyStatsText .. "Crit ("      .. GetCombatRating(CR_CRIT_SPELL)              .. ") ≥ "
@@ -169,7 +183,7 @@ local function GetStatsDistrib()
         MyStatsText =  MyStatsText .. " https://www.method.gg/guides/beast-mastery-hunter/stats-races-and-consumables\n" 
     elseif id == 266 then
         -- Intellect / Item Level >>> Haste > Mastery = Crit > Versatility
-        MyStatsText =  MyStatsText .. class .. ' (Demonology Warlock, ID ' .. id ..')\n'
+        MyStatsText =  MyStatsText .. "|cFF8788EE".. class .."|r".. ' (Demonology, ID ' .. id ..')\n'
         MyStatsText =  MyStatsText .. '\nItem level increases intellect and stamina. When at the same item level the priority should be:\n\n'
         MyStatsText =  MyStatsText .. "\nDemonbolt Builds (Sacrificed Souls + Fel Covenant talented):\n"
         MyStatsText =  MyStatsText .. "Intellect (" .. UnitStat("player",4)                        .. ") > "
@@ -188,7 +202,7 @@ local function GetStatsDistrib()
         MyStatsText =  MyStatsText .. " https://www.method.gg/guides/demonology-warlock/stats-races-and-consumables\n\n" 
     elseif id == 1468 then
         -- Intellect / Item Level >>> Haste > Mastery = Crit > Versatility
-        MyStatsText =  MyStatsText .. class .. ' (Preservation Evoker, ID ' .. id ..')\n'
+        MyStatsText =  MyStatsText .. "|cFF33937F".. class .."|r".. ' (Preservation Evoker, ID ' .. id ..')\n'
         MyStatsText =  MyStatsText .. '\nItem level increases intellect and stamina. When at the same item level the priority should be for raiding:\n\n'
         MyStatsText =  MyStatsText .. "Mastery ("   .. GetCombatRating(CR_MASTERY)                 .. ") > "
         MyStatsText =  MyStatsText .. "Crit ("      .. GetCombatRating(CR_CRIT_SPELL)              .. ") > "
@@ -258,21 +272,30 @@ SLASH_MYRAIDSET1 = "/MYRAIDSET"
 local function ToggleMyRaidSet()
     if IsAddOnLoaded("ElvUI") then
         -- ElvUI
-        -- ElvUI
-        local Bars, BarNumber = {1}, unpack(ElvUI); 
-        for _, n in pairs(Bars) do 
-            local state = BarNumber.db.actionbar["bar"..n].enabled; 
-            BarNumber.db.actionbar["bar"..n].enabled = (state==false and true or false);
-            BarNumber.ActionBars:PositionAndSizeBar("bar"..n);
-            if BarNumber.db.actionbar["bar"..n].enabled == true then
+        if IsMounted() then     -- just toggle self highlight and action target
+            if GetCVar("FindYourselfAnywhere") == "1" then 
+                SetCVar("FindYourselfAnywhere", "0")
+                 SetCVar("SoftTargetEnemy", "0")
+            else
                 SetCVar("FindYourselfAnywhere", "1")
                 SetCVar("SoftTargetEnemy", "3")
-                local bars, E = {15}, unpack(ElvUI);
-                E.db.actionbar["bar"..15].enabled = false;
-                E.ActionBars:PositionAndSizeBar("bar"..15);
-            else
-                SetCVar("FindYourselfAnywhere", "0")
-                SetCVar("SoftTargetEnemy", "0")
+            end
+        else
+            local Bars, BarNumber = {1}, unpack(ElvUI); 
+            for _, n in pairs(Bars) do 
+                local state = BarNumber.db.actionbar["bar"..n].enabled; 
+                BarNumber.db.actionbar["bar"..n].enabled = (state==false and true or false);
+                BarNumber.ActionBars:PositionAndSizeBar("bar"..n);
+                if BarNumber.db.actionbar["bar"..n].enabled == true then
+                    SetCVar("FindYourselfAnywhere", "1")
+                    SetCVar("SoftTargetEnemy", "3")
+                    local bars, E = {15}, unpack(ElvUI);
+                    E.db.actionbar["bar"..15].enabled = false;
+                    E.ActionBars:PositionAndSizeBar("bar"..15);
+                else
+                    SetCVar("FindYourselfAnywhere", "0")
+                    SetCVar("SoftTargetEnemy", "0")
+                end
             end
         end
     else
@@ -304,29 +327,28 @@ SLASH_MYPROFESSIONSET1 = "/MYPROFESSIONSET"
 local function ToggleMyPROFESSIONSet()
     if IsAddOnLoaded("ElvUI") then
 -- ElvUI
+        SetCVar("FindYourselfAnywhere", "0")
+        SetCVar("SoftTargetEnemy", "0")
         local Bars, BarNumber = {15}, unpack(ElvUI); 
         for _, n in pairs(Bars) do 
             local state = BarNumber.db.actionbar["bar"..n].enabled; 
             BarNumber.db.actionbar["bar"..n].enabled = (state==false and true or false);
             BarNumber.ActionBars:PositionAndSizeBar("bar"..n);
-            if IsMounted() then
+            if BarNumber.db.actionbar["bar"..n].enabled == true then
                 local bars, E = {1}, unpack(ElvUI);
                 E.db.actionbar["bar"..1].enabled = false;
                 E.ActionBars:PositionAndSizeBar("bar"..1);
+            -- else
+            --     local bars, E = {1}, unpack(ElvUI);
+            --     E.db.actionbar["bar"..1].enabled = false;
+            --  E.ActionBars:PositionAndSizeBar("bar"..1);
             end
-            if BarNumber.db.actionbar["bar"..n].enabled == true then
-                SetCVar("FindYourselfAnywhere", "0")
-                SetCVar("SoftTargetEnemy", "0")
-                if IsMounted() then
+            if IsMounted() then   -- toggle bars
+                if BarNumber.db.actionbar["bar"..n].enabled == false then
                     local bars, E = {1}, unpack(ElvUI);
                     E.db.actionbar["bar"..1].enabled = true;
                     E.ActionBars:PositionAndSizeBar("bar"..1);
-                else
-                    local bars, E = {1}, unpack(ElvUI);
-                    E.db.actionbar["bar"..1].enabled = false;
-                    E.ActionBars:PositionAndSizeBar("bar"..1);
                 end
-
             end
         end
     else
@@ -683,7 +705,7 @@ end
 SLASH_MYMOUNTS1 = "/MYMOUNTS"
 SLASH_MYMOUNTS2 = "/MYM"
 
--- sample user macro
+-- sample macro uasage
 --  #showtooltip
 --   /cast [swimming,@player]Unending Breath
 --   /cast [mod:ctrl]Grand Expedition Yak
@@ -698,10 +720,8 @@ local function MYMOUNTS(INPUTSRING)
     count = 0                                       -- error message to chat if arg count mismatches 4
     for _ in pairs(InputArray) do count = count + 1 end
     if count < 4 then
-        print("Missing arguments for /mymounts\n/MYMOUNTS SWIM, ADVFLY, FLY, NOFLY")
-        -- msg = "missing arguments"
-        -- MyScreenMessage.text:SetText(msg)
-        -- MyScreenMessage.anim:Play()
+
+        print("|cff8788EEAysons|r missing argument for mymounts\n|cffFFFF00/MYMOUNTS swimming, dragon, flying, groud|r")
         return
     end
 
@@ -721,9 +741,13 @@ local function MYMOUNTS(INPUTSRING)
                 -- ChangeActionBarPage("1")
                 if IsAddOnLoaded("ElvUI") then
                     -- ElvUI
+                    -- show actionbar for dragonriding
                     local bars, E = {1}, unpack(ElvUI);
                     E.db.actionbar["bar".. 1].enabled = true;
                     E.ActionBars:PositionAndSizeBar("bar" .. 1);
+                    local bars, E = {15}, unpack(ElvUI);
+                    E.db.actionbar["bar".. 15].enabled = false;
+                    E.ActionBars:PositionAndSizeBar("bar" .. 15);
                 else
                     -- Blizzard UI
                     ChangeActionBarPage("1")
@@ -731,10 +755,17 @@ local function MYMOUNTS(INPUTSRING)
             else
                 Dismount()
                 if IsAddOnLoaded("ElvUI") then
-                    -- ElvUI
-                    local bars, E = {1}, unpack(ElvUI);
+                 -- ElvUI
+                local bars, E = {1}, unpack(ElvUI);
+                if GetCVar("FindYourselfAnywhere") == "1" then  -- Raidbar visible if raid selfhiglight on
                     E.db.actionbar["bar".. 1].enabled = true;
-                    E.ActionBars:PositionAndSizeBar("bar" .. 1);
+                else
+                    E.db.actionbar["bar".. 1].enabled = false;
+                end
+                E.ActionBars:PositionAndSizeBar("bar" .. 1);
+                local bars, E = {15}, unpack(ElvUI);            -- Professions off
+                E.db.actionbar["bar".. 15].enabled = false;
+                E.ActionBars:PositionAndSizeBar("bar" .. 15);
                 else
                     -- Blizzard UI
                     ChangeActionBarPage("1")
@@ -751,8 +782,15 @@ local function MYMOUNTS(INPUTSRING)
             if IsAddOnLoaded("ElvUI") then
                  -- ElvUI
                 local bars, E = {1}, unpack(ElvUI);
-                E.db.actionbar["bar".. 1].enabled = true;
+                if GetCVar("FindYourselfAnywhere") == "1" then  -- Raidbar visible if raid selfhiglight on
+                    E.db.actionbar["bar".. 1].enabled = true;
+                else
+                    E.db.actionbar["bar".. 1].enabled = false;
+                end
                 E.ActionBars:PositionAndSizeBar("bar" .. 1);
+                local bars, E = {15}, unpack(ElvUI);            -- Professions off
+                E.db.actionbar["bar".. 15].enabled = false;
+                E.ActionBars:PositionAndSizeBar("bar" .. 15);
             else
                 -- Blizzard UI
                 ChangeActionBarPage("1")
@@ -768,6 +806,9 @@ local function MYMOUNTS(INPUTSRING)
             local bars, E = {1}, unpack(ElvUI);
             E.db.actionbar["bar".. 1].enabled = true;
             E.ActionBars:PositionAndSizeBar("bar" .. 1);
+            local bars, E = {15}, unpack(ElvUI);
+            E.db.actionbar["bar".. 15].enabled = false;
+            E.ActionBars:PositionAndSizeBar("bar" .. 15);
             else
                 -- Blizzard UI
                 ChangeActionBarPage("1")
