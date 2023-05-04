@@ -1,10 +1,11 @@
-## Interface: 100007
-## Title: Aysons
-## Version: @project-version@
-## Notes: Personal settings and macros
-## Author:  Baiyah7o
+## Interface: 100010
+## Title: 	  Aysons
+## Version:   @project-version@
+## Notes:  	  Personal settings and macros
+## Author:    Baiyah7o
 
 ## DefaultState: enabled
+## IconTexture:  Interface\Addons\Aysons\Icons\icon.png
 
 Libs\LibStub\LibStub.lua
 
