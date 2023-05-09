@@ -17,6 +17,15 @@ SetCVar("test_cameraDynamicPitchBaseFovPadFlying", 0.75)
 
 SetCVar("scriptErrors", 1)
 
+
+-- hide extra button bar art 
+-- list elements with /fstack
+
+ExtraActionButton1.style:Hide()
+ExtraActionButton1.IconMask:Show()
+ExtraActionButton1.HighlightTexture:Show()
+
+
 -- Spellqueue
 
 SetCVar("SpellQueueWindow", 200)
