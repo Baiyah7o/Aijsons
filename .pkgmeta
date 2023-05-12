@@ -10,3 +10,4 @@ ignore:
   - .gitignore
   - Sound/_create_asset.sh
   - Sound/_soundfiles
+  - Icons/icon.svg
