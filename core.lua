@@ -22,8 +22,10 @@ SetCVar("scriptErrors", 1)
 -- list elements with /fstack
 
 ExtraActionButton1.style:Hide()
-ExtraActionButton1.IconMask:Show()
+ExtraActionButton1.IconMask:Hide()
 ExtraActionButton1.HighlightTexture:Show()
+ExtraActionButton1.HotKey:Show()
+
 
 
 -- Spellqueue

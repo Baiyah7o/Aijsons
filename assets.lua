@@ -96,6 +96,10 @@ Aysons:Register("font", "Cantarell Thin", [[Interface\Addons\Aysons\Fonts\Cantar
 Aysons:Register("font", "Cantarell VF", [[Interface\Addons\Aysons\Fonts\Cantarell-VF.otf]])
 
 Aysons:Register("statusbar", "Flat", [[Interface\Addons\Aysons\Statusbar\flat.tga]])
+Aysons:Register("statusbar", "MyBarForward", [[Interface\Addons\Aysons\Statusbar\mybar_forward.tga]])
+Aysons:Register("statusbar", "MyBarReverse", [[Interface\Addons\Aysons\Statusbar\mybar_reverse.tga]])
+Aysons:Register("statusbar", "TitanPanelBackgroundBottom", [[Interface\Addons\Aysons\Statusbar\TitanPanelBackgroundBottom0.tga]])
+Aysons:Register("statusbar", "TitanPanelBackgroundTop", [[Interface\Addons\Aysons\Statusbar\TitanPanelBackgroundTop0.tga]])
 
 Aysons:Register("sound", "Aysons, 10", [[Interface\Addons\Aysons\Sound\10.ogg]])
 Aysons:Register("sound", "Aysons, 1", [[Interface\Addons\Aysons\Sound\1.ogg]])
