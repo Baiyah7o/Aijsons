@@ -26,7 +26,11 @@ ExtraActionButton1.IconMask:Hide()
 ExtraActionButton1.HighlightTexture:Show()
 ExtraActionButton1.HotKey:Show()
 
+-- Target settings
 
+SetCVar("FindYourselfAnywhere", "0")
+SetCVar("SoftTargetEnemy", "3")        --  0 off, 1 gamepad 2 kbm, 3 always
+SetCVar("SoftTargetEnemyArc", "1")     --  0 none, 1 in front, 2 in target arrea
 
 -- Spellqueue
 
@@ -51,6 +55,29 @@ SetCVar("RAIDweatherDensity", 0)
 
 -- SetCVar("myRaidBar", 0)
 -- SetCVar("myProfessionBar", 0)
+
+
+-- Tooltip Item-ID
+-- Author: codger-AeriePeak
+-- Based on Item Level by powerhandlar@entw.eu
+-- Displays the item ID in the item tooltip
+-- License: Public Domain
+
+--- Add_Simple_Item_ID to the tooltip
+local function Add_Item_Id(tooltip)
+    local _, itemLink = tooltip:GetItem()
+    if (itemLink ~= nil) then
+        local itemId, _, _, _, _, _, _ = GetItemInfoInstant(itemLink)
+        -- if itemId then tooltip:AddLine("Item ID: |c00FFFFFF"..itemId.."|r") end
+        -- if itemId then tooltip:AddLine(string.format("%-18s%-12s%", "Item ID:", "|c00FFFFFF"..itemId.."|r")) end
+        -- if itemId then tooltip:AddLine(string.format("%-18s%-12s", "Item ID:", "|c00FFFFFF"..itemId.."|r")) end
+        if itemId then tooltip:AddDoubleLine("|c00ffd800Item ID|r", "|c00FFFFFF"..itemId.."|r", 1, 1, 1) end
+    end
+end
+
+TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Item, Add_Item_Id)
+
+
 
 
 -- frame that contains the text
@@ -286,10 +313,12 @@ local function ToggleMyRaidSet()
         if IsMounted() then     -- just toggle self highlight and action target
             if GetCVar("FindYourselfAnywhere") == "1" then 
                 SetCVar("FindYourselfAnywhere", "0")
-                 SetCVar("SoftTargetEnemy", "0")
+                 SetCVar("SoftTargetEnemy", "3")        --  0 off, 1 gamepad 2 kbm, 3 always
+                 SetCVar("SoftTargetEnemyArc", "1")     --  0 none, 1 in front, 2 in target arrea
             else
                 SetCVar("FindYourselfAnywhere", "1")
                 SetCVar("SoftTargetEnemy", "3")
+                SetCVar("SoftTargetEnemyArc", "1")
             end
         else
             local Bars, BarNumber = {1}, unpack(ElvUI); 
@@ -300,12 +329,14 @@ local function ToggleMyRaidSet()
                 if BarNumber.db.actionbar["bar"..n].enabled == true then
                     SetCVar("FindYourselfAnywhere", "1")
                     SetCVar("SoftTargetEnemy", "3")
+                    SetCVar("SoftTargetEnemyArc", "1")
                     local bars, E = {15}, unpack(ElvUI);
                     E.db.actionbar["bar"..15].enabled = false;
                     E.ActionBars:PositionAndSizeBar("bar"..15);
                 else
                     SetCVar("FindYourselfAnywhere", "0")
-                    SetCVar("SoftTargetEnemy", "0")
+                    SetCVar("SoftTargetEnemy", "3")
+                    SetCVar("SoftTargetEnemyArc", "1")
                 end
             end
         end
@@ -318,11 +349,13 @@ local function ToggleMyRaidSet()
             -- SetCVar("myRaidBar", "1")
             SetCVar("FindYourselfAnywhere", "1")
             SetCVar("SoftTargetEnemy", "3")
+            SetCVar("SoftTargetEnemyArc", "1")
         else
             ChangeActionBarPage("2")
             -- SetCVar("myRaidBar", "0")
             SetCVar("FindYourselfAnywhere", "0")
-            SetCVar("SoftTargetEnemy", "0")
+            SetCVar("SoftTargetEnemy", "3")
+            SetCVar("SoftTargetEnemyArc", "1")
         end
     end 
 end
@@ -339,7 +372,8 @@ local function ToggleMyPROFESSIONSet()
     if IsAddOnLoaded("ElvUI") then
 -- ElvUI
         SetCVar("FindYourselfAnywhere", "0")
-        SetCVar("SoftTargetEnemy", "0")
+        SetCVar("SoftTargetEnemy", "3")
+        SetCVar("SoftTargetEnemyArc", "1")
         local Bars, BarNumber = {15}, unpack(ElvUI); 
         for _, n in pairs(Bars) do 
             local state = BarNumber.db.actionbar["bar"..n].enabled; 
@@ -389,32 +423,6 @@ end
 
 SlashCmdList["MYPROFESSIONSET"] = ToggleMyPROFESSIONSet
 
--- create slash command to toggle Haldu's Dragonflight Helper framed to actionbar bar 15
--- obsolete, WA visibilty toggle bound to objevtive frames  (ObjectiveTrackerBlocksFrame)
-
--- SLASH_MYWEEKLYS1 = "/MYWEEKLYS"
-
--- local function ToggleMyWeelys()
---     if IsAddOnLoaded("ElvUI") then
--- -- ElvUI
---         local Bars, BarNumber = {15}, unpack(ElvUI); 
---         for _, n in pairs(Bars) do 
---             local state = BarNumber.db.actionbar["bar"..n].enabled; 
---             BarNumber.db.actionbar["bar"..n].enabled = (state==false and true or false);
---             BarNumber.ActionBars:PositionAndSizeBar("bar"..n);
---         end
---     else
---         -- if GetCVar("myWeeklies") == "1" then
---         --     MultiBar7:Hide() 
---         --     SetCVar("myWeeklies", "0")
---         -- else
---         --     MultiBar7:Show() 
---         --     SetCVar("myWeeklies", "1")
---         -- end
---     end
--- end
--- SlashCmdList["MYWEEKLYS"] = ToggleMyWeelys
--- edit box with class stats
  
 function StatsEditBox_Show(text)
     if not StatsEditBox then
@@ -830,3 +838,31 @@ local function MYMOUNTS(INPUTSRING)
 end
 
 SlashCmdList["MYMOUNTS"] = MYMOUNTS
+
+
+-- create slash command to toggle Haldu's Dragonflight Helper framed to actionbar bar 15
+-- obsolete, WA visibilty toggle bound to objevtive frames  (ObjectiveTrackerBlocksFrame)
+
+-- SLASH_MYWEEKLYS1 = "/MYWEEKLYS"
+
+-- local function ToggleMyWeelys()
+--     if IsAddOnLoaded("ElvUI") then
+-- -- ElvUI
+--         local Bars, BarNumber = {15}, unpack(ElvUI); 
+--         for _, n in pairs(Bars) do 
+--             local state = BarNumber.db.actionbar["bar"..n].enabled; 
+--             BarNumber.db.actionbar["bar"..n].enabled = (state==false and true or false);
+--             BarNumber.ActionBars:PositionAndSizeBar("bar"..n);
+--         end
+--     else
+--         -- if GetCVar("myWeeklies") == "1" then
+--         --     MultiBar7:Hide() 
+--         --     SetCVar("myWeeklies", "0")
+--         -- else
+--         --     MultiBar7:Show() 
+--         --     SetCVar("myWeeklies", "1")
+--         -- end
+--     end
+-- end
+-- SlashCmdList["MYWEEKLYS"] = ToggleMyWeelys
+-- edit box with class stats
