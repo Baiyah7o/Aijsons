@@ -57,21 +57,24 @@ SetCVar("RAIDweatherDensity", 0)
 -- SetCVar("myProfessionBar", 0)
 
 
--- Tooltip Item-ID
--- Author: codger-AeriePeak
--- Based on Item Level by powerhandlar@entw.eu
--- Displays the item ID in the item tooltip
+-- Item tooltip based on codger-AeriePeak
+-- and on Item Level by powerhandlar@entw.eu
 -- License: Public Domain
 
---- Add_Simple_Item_ID to the tooltip
 local function Add_Item_Id(tooltip)
     local _, itemLink = tooltip:GetItem()
     if (itemLink ~= nil) then
         local itemId, _, _, _, _, _, _ = GetItemInfoInstant(itemLink)
-        -- if itemId then tooltip:AddLine("Item ID: |c00FFFFFF"..itemId.."|r") end
-        -- if itemId then tooltip:AddLine(string.format("%-18s%-12s%", "Item ID:", "|c00FFFFFF"..itemId.."|r")) end
-        -- if itemId then tooltip:AddLine(string.format("%-18s%-12s", "Item ID:", "|c00FFFFFF"..itemId.."|r")) end
-        if itemId then tooltip:AddDoubleLine("|c00ffd800Item ID|r", "|c00FFFFFF"..itemId.."|r", 1, 1, 1) end
+        if itemId then 
+            tooltip:AddDoubleLine("|c00ffd800Item ID|r", "|c00FFFFFF"..itemId.."|r", 1, 1, 1)
+            local count = GetItemCount(itemId)
+            local totalcount = GetItemCount(itemId,true)
+            tooltip:AddDoubleLine("|c00ffd800Bag amount|r", "|c00FFFFFF"..count.."|r", 1, 1, 1)
+            if (count ~= totalcount) then
+                tooltip:AddDoubleLine("|c00ffd800Bank|r", "|c00FFFFFF"..(totalcount - count).."|r", 1, 1, 1)
+                tooltip:AddDoubleLine("|c00ffd800Total|r", "|c00FFFFFF"..(totalcount).."|r", 1, 1, 1)
+             end
+        end
     end
 end
 
