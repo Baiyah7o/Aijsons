@@ -348,13 +348,17 @@ local function ToggleMyRaidSet()
         -- SetCVar("myProfessionBar", "0")
         index = GetActionBarPage()
         if index == 2 then
-            ChangeActionBarPage("1")
+            if not UnitAffectingCombat("player") then
+                        ChangeActionBarPage("1")
+            end
             -- SetCVar("myRaidBar", "1")
             SetCVar("FindYourselfAnywhere", "1")
             SetCVar("SoftTargetEnemy", "3")
             SetCVar("SoftTargetEnemyArc", "1")
         else
-            ChangeActionBarPage("2")
+            if not UnitAffectingCombat("player") then
+                        ChangeActionBarPage("2")
+            end
             -- SetCVar("myRaidBar", "0")
             SetCVar("FindYourselfAnywhere", "0")
             SetCVar("SoftTargetEnemy", "3")
@@ -404,9 +408,13 @@ local function ToggleMyPROFESSIONSet()
         SetCVar("FindYourselfAnywhere", "0")
         index = GetActionBarPage()
         if index == 2 then
-            ChangeActionBarPage("1")
+            if not UnitAffectingCombat("player") then
+                ChangeActionBarPage("1")
+            end
         else
-            ChangeActionBarPage("2")
+            if not UnitAffectingCombat("player") then
+                ChangeActionBarPage("2")
+            end
         end
         -- if GetCVar("myProfessionBar") == "1" then
         --     ChangeActionBarPage("1") 
@@ -619,31 +627,33 @@ local function MYCOMMANDBAR()
         end
     else
 -- Blizzard UI
-        index = GetActionBarPage()
-        if index == 1 then
-            ChangeActionBarPage("3")
-        elseif index == 2 then
-            ChangeActionBarPage("3")
-        elseif index == 3 then
-            ChangeActionBarPage("4")
-        elseif index == 4 then
-            ChangeActionBarPage("5")
-        elseif index == 5 then
-            ChangeActionBarPage("6")
-        else
-            ChangeActionBarPage("1")
+        if not UnitAffectingCombat("player") then
+            index = GetActionBarPage()
+            if index == 1 then
+                ChangeActionBarPage("3")
+            elseif index == 2 then
+                ChangeActionBarPage("3")
+            elseif index == 3 then
+                ChangeActionBarPage("4")
+            elseif index == 4 then
+                ChangeActionBarPage("5")
+            elseif index == 5 then
+                ChangeActionBarPage("6")
+            else
+                ChangeActionBarPage("1")
+            end
+            -- if GetCVar("myCommandBar") == "1" then
+            --     MultiBarBottomLeft:Hide()
+            --     MultiBarRight:Hide()
+            --     MultiBarLeft:Hide()
+            --     SetCVar("myCommandBar", "0")
+            -- else
+            --     MultiBarBottomLeft:Show()
+            --     MultiBarRight:Show()
+            --     MultiBarLeft:Show()
+            --     SetCVar("myCommandBar", "1")
+            -- end
         end
-        -- if GetCVar("myCommandBar") == "1" then
-        --     MultiBarBottomLeft:Hide()
-        --     MultiBarRight:Hide()
-        --     MultiBarLeft:Hide()
-        --     SetCVar("myCommandBar", "0")
-        -- else
-        --     MultiBarBottomLeft:Show()
-        --     MultiBarRight:Show()
-        --     MultiBarLeft:Show()
-        --     SetCVar("myCommandBar", "1")
-        -- end
     end
 end
 
@@ -772,7 +782,9 @@ local function MYMOUNTS(INPUTSRING)
                     E.ActionBars:PositionAndSizeBar("bar" .. 15);
                 else
                     -- Blizzard UI
-                    ChangeActionBarPage("1")
+                    if not UnitAffectingCombat("player") then
+                        ChangeActionBarPage("1")
+                    end
                 end
             else
                 Dismount()
@@ -790,7 +802,9 @@ local function MYMOUNTS(INPUTSRING)
                 E.ActionBars:PositionAndSizeBar("bar" .. 15);
                 else
                     -- Blizzard UI
-                    ChangeActionBarPage("1")
+                    if not UnitAffectingCombat("player") then
+                        ChangeActionBarPage("1")
+                    end
                 end
             end
         else
@@ -815,7 +829,9 @@ local function MYMOUNTS(INPUTSRING)
                 E.ActionBars:PositionAndSizeBar("bar" .. 15);
             else
                 -- Blizzard UI
-                ChangeActionBarPage("1")
+                if not UnitAffectingCombat("player") then
+                        ChangeActionBarPage("1")
+                end
             end
         end
     elseif IsFlyableArea() then
@@ -833,7 +849,9 @@ local function MYMOUNTS(INPUTSRING)
             E.ActionBars:PositionAndSizeBar("bar" .. 15);
             else
                 -- Blizzard UI
-                ChangeActionBarPage("1")
+                if not UnitAffectingCombat("player") then
+                        ChangeActionBarPage("1")
+                end
             end
     else
         CastSpellByName(NOFLY)                  -- noflyable  
