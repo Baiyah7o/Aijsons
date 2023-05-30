@@ -1,4 +1,4 @@
-package-as: Aijson
+package-as: Aijsons
 
 externals:
     Libs/CallbackHandler-1.0: svn://svn.wowace.com/wow/ace3/mainline/trunk/CallbackHandler-1.0
