@@ -31,6 +31,6 @@ ls -1 *.ogg  > $TEMPFILE
 sed -i "s/\.ogg//g" $TEMPFILE
 while read -r ASSETLINES; do
     echo -e "$ASSETLINES"
-    echo -e "Aysons:Register(\"sound\", \"Aysons, $ASSETLINES\", [[Interface\\Addons\\Aysons\\Sound\\$ASSETLINES.ogg]])"  >> $ASSETFILE
+    echo -e "Aijsons:Register(\"sound\", \"Aijsons, $ASSETLINES\", [[Interface\\Addons\\Aijsons\\Sound\\$ASSETLINES.ogg]])"  >> $ASSETFILE
 done <$TEMPFILE 
 rm $TEMPFILE

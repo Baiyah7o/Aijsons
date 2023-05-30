@@ -1,4 +1,4 @@
-# Aysons
+# Aijsons
 My personal World of Warcraft addon to enhance ElvUI experience.
 
 ## Soundfiles

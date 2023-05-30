@@ -429,69 +429,69 @@ SlashCmdList["MYPROFESSIONSET"] = ToggleMyPROFESSIONSet
  
 function StatsEditBox_Show(text)
     if not StatsEditBox then
-        local FrameAysons = CreateFrame("Frame", "StatsEditBox", UIParent, "DialogBoxFrame")
-        FrameAysons:SetPoint("CENTER")
-        FrameAysons:SetSize(720,480)
+        local FrameAijsons = CreateFrame("Frame", "StatsEditBox", UIParent, "DialogBoxFrame")
+        FrameAijsons:SetPoint("CENTER")
+        FrameAijsons:SetSize(720,480)
         
-        FrameAysons:SetBackdrop({
+        FrameAijsons:SetBackdrop({
             bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background",
             -- edgeFile = "Interface\\PVPFrame\\UI-Character-PVP-Highlight", -- this one is neat
             edgeFile = "Interface\\DialogFrame\\UI-DialogBox-Border",
             edgeSize = 16,
             -- insets = { left = 8, right = 6, top = 8, bottom = 8 },
         })
-        -- FrameAysons:SetBackdropBorderColor(0, .44, .87, 0.5) -- darkblue
+        -- FrameAijsons:SetBackdropBorderColor(0, .44, .87, 0.5) -- darkblue
         
         -- Movable
-        FrameAysons:SetMovable(true)
-        FrameAysons:SetClampedToScreen(true)
-        FrameAysons:SetScript("OnMouseDown", function(self, button)
+        FrameAijsons:SetMovable(true)
+        FrameAijsons:SetClampedToScreen(true)
+        FrameAijsons:SetScript("OnMouseDown", function(self, button)
             if button == "LeftButton" then
                 self:StartMoving()
             end
         end)
-        FrameAysons:SetScript("OnMouseUp", FrameAysons.StopMovingOrSizing)
+        FrameAijsons:SetScript("OnMouseUp", FrameAijsons.StopMovingOrSizing)
         
         -- ScrollFrame
-        local ScrollFrameAysons = CreateFrame("ScrollFrame", "StatsEditBoxScrollFrame", StatsEditBox, "UIPanelScrollFrameTemplate")
-        ScrollFrameAysons:SetPoint("LEFT", 16, 0)
-        ScrollFrameAysons:SetPoint("RIGHT", -32, 0)
-        ScrollFrameAysons:SetPoint("TOP", 0, -16)
-        ScrollFrameAysons:SetPoint("BOTTOM", StatsEditBoxButton, "TOP", 0, 0)
+        local ScrollFrameAijsons = CreateFrame("ScrollFrame", "StatsEditBoxScrollFrame", StatsEditBox, "UIPanelScrollFrameTemplate")
+        ScrollFrameAijsons:SetPoint("LEFT", 16, 0)
+        ScrollFrameAijsons:SetPoint("RIGHT", -32, 0)
+        ScrollFrameAijsons:SetPoint("TOP", 0, -16)
+        ScrollFrameAijsons:SetPoint("BOTTOM", StatsEditBoxButton, "TOP", 0, 0)
         
         -- EditBox
-        local EditBoxAysons = CreateFrame("EditBox", "StatsEditBoxEditBox", StatsEditBoxScrollFrame)
-        EditBoxAysons:SetSize(ScrollFrameAysons:GetSize())
-        EditBoxAysons:SetMultiLine(true)
-        EditBoxAysons:SetAutoFocus(false) -- dont automatically focus
-        EditBoxAysons:SetFontObject("ChatFontNormal")
-        EditBoxAysons:SetScript("OnEscapePressed", function() FrameAysons:Hide() end)
-        ScrollFrameAysons:SetScrollChild(EditBoxAysons)
+        local EditBoxAijsons = CreateFrame("EditBox", "StatsEditBoxEditBox", StatsEditBoxScrollFrame)
+        EditBoxAijsons:SetSize(ScrollFrameAijsons:GetSize())
+        EditBoxAijsons:SetMultiLine(true)
+        EditBoxAijsons:SetAutoFocus(false) -- dont automatically focus
+        EditBoxAijsons:SetFontObject("ChatFontNormal")
+        EditBoxAijsons:SetScript("OnEscapePressed", function() FrameAijsons:Hide() end)
+        ScrollFrameAijsons:SetScrollChild(EditBoxAijsons)
         
         -- Resizable
-        FrameAysons:SetResizable(true)
-        FrameAysons:SetResizeBounds(150,100,1280,720)
+        FrameAijsons:SetResizable(true)
+        FrameAijsons:SetResizeBounds(150,100,1280,720)
     
-        local ButtonAysons = CreateFrame("Button", "StatsEditBoxResizeButton", StatsEditBox)
-        ButtonAysons:SetPoint("BOTTOMRIGHT", -6, 7)
-        ButtonAysons:SetSize(16, 16)
+        local ButtonAijsons = CreateFrame("Button", "StatsEditBoxResizeButton", StatsEditBox)
+        ButtonAijsons:SetPoint("BOTTOMRIGHT", -6, 7)
+        ButtonAijsons:SetSize(16, 16)
         
-        ButtonAysons:SetNormalTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Up")
-        ButtonAysons:SetHighlightTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Highlight")
-        ButtonAysons:SetPushedTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Down")
+        ButtonAijsons:SetNormalTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Up")
+        ButtonAijsons:SetHighlightTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Highlight")
+        ButtonAijsons:SetPushedTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Down")
         
-        ButtonAysons:SetScript("OnMouseDown", function(self, button)
+        ButtonAijsons:SetScript("OnMouseDown", function(self, button)
             if button == "LeftButton" then
-                FrameAysons:StartSizing("BOTTOMRIGHT")
+                FrameAijsons:StartSizing("BOTTOMRIGHT")
                 self:GetHighlightTexture():Hide() -- more noticeable
             end
         end)
-        ButtonAysons:SetScript("OnMouseUp", function(self, button)
-            FrameAysons:StopMovingOrSizing()
+        ButtonAijsons:SetScript("OnMouseUp", function(self, button)
+            FrameAijsons:StopMovingOrSizing()
             self:GetHighlightTexture():Show()
-            EditBoxAysons:SetWidth(ScrollFrameAysons:GetWidth())
+            EditBoxAijsons:SetWidth(ScrollFrameAijsons:GetWidth())
         end)
-        FrameAysons:Show()
+        FrameAijsons:Show()
     end
     
     if text then
@@ -500,37 +500,37 @@ function StatsEditBox_Show(text)
     StatsEditBox:Show()
 end
 
--- function Aysons:GetMainFrame(text)
+-- function Aijsons:GetMainFrame(text)
 function GetMainFrame(text)
   -- Frame code largely adapted from https://www.wowinterface.com/forums/showpost.php?p=323901&postcount=2
-  if not AysonsFrame then
+  if not AijsonsFrame then
     -- Main Frame
     local frameConfig = self.db.profile.frame
-    local FrameAysons = CreateFrame("Frame", "AysonsFrame", UIParent, "DialogBoxFrame")
-    FrameAysons:ClearAllPoints()
+    local FrameAijsons = CreateFrame("Frame", "AijsonsFrame", UIParent, "DialogBoxFrame")
+    FrameAijsons:ClearAllPoints()
     -- load position from local DB
-    FrameAysons:SetPoint(
+    FrameAijsons:SetPoint(
       frameConfig.point,
       frameConfig.relativeFrame,
       frameConfig.relativePoint,
       frameConfig.ofsx,
       frameConfig.ofsy
     )
-    FrameAysons:SetSize(frameConfig.width, frameConfig.height)
-    FrameAysons:SetBackdrop({
+    FrameAijsons:SetSize(frameConfig.width, frameConfig.height)
+    FrameAijsons:SetBackdrop({
       bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background",
       edgeFile = "Interface\\PVPFrame\\UI-Character-PVP-Highlight",
       edgeSize = 16,
       insets = { left = 8, right = 8, top = 8, bottom = 8 },
     })
-    FrameAysons:SetMovable(true)
-    FrameAysons:SetClampedToScreen(true)
-    FrameAysons:SetScript("OnMouseDown", function(self, button)
+    FrameAijsons:SetMovable(true)
+    FrameAijsons:SetClampedToScreen(true)
+    FrameAijsons:SetScript("OnMouseDown", function(self, button)
       if button == "LeftButton" then
         self:StartMoving()
       end
     end)
-    FrameAysons:SetScript("OnMouseUp", function(self, button)
+    FrameAijsons:SetScript("OnMouseUp", function(self, button)
       self:StopMovingOrSizing()
       -- save position between sessions
       local point, relativeFrame, relativeTo, ofsx, ofsy = self:GetPoint()
@@ -542,53 +542,53 @@ function GetMainFrame(text)
     end)
 
     -- scroll frame
-    local ScrollFrameAysons = CreateFrame("ScrollFrame", "AysonsScrollFrame", f, "UIPanelScrollFrameTemplate")
-    ScrollFrameAysons:SetPoint("LEFT", 16, 0)
-    ScrollFrameAysons:SetPoint("RIGHT", -32, 0)
-    ScrollFrameAysons:SetPoint("TOP", 0, -32)
-    ScrollFrameAysons:SetPoint("BOTTOM", AysonsFrameButton, "TOP", 0, 0)
+    local ScrollFrameAijsons = CreateFrame("ScrollFrame", "AijsonsScrollFrame", f, "UIPanelScrollFrameTemplate")
+    ScrollFrameAijsons:SetPoint("LEFT", 16, 0)
+    ScrollFrameAijsons:SetPoint("RIGHT", -32, 0)
+    ScrollFrameAijsons:SetPoint("TOP", 0, -32)
+    ScrollFrameAijsons:SetPoint("BOTTOM", AijsonsFrameButton, "TOP", 0, 0)
 
     -- edit box
-    local EditBoxAysons = CreateFrame("EditBox", "AysonsEditBox", AysonsScrollFrame)
-    EditBoxAysons:SetSize(ScrollFrameAysons:GetSize())
-    EditBoxAysons:SetMultiLine(true)
-    EditBoxAysons:SetAutoFocus(true)
-    EditBoxAysons:SetFontObject("ChatFontNormal")
-    EditBoxAysons:SetScript("OnEscapePressed", function() FrameAysons:Hide() end)
-    ScrollFrameAysons:SetScrollChild(EditBoxAysons)
+    local EditBoxAijsons = CreateFrame("EditBox", "AijsonsEditBox", AijsonsScrollFrame)
+    EditBoxAijsons:SetSize(ScrollFrameAijsons:GetSize())
+    EditBoxAijsons:SetMultiLine(true)
+    EditBoxAijsons:SetAutoFocus(true)
+    EditBoxAijsons:SetFontObject("ChatFontNormal")
+    EditBoxAijsons:SetScript("OnEscapePressed", function() FrameAijsons:Hide() end)
+    ScrollFrameAijsons:SetScrollChild(EditBoxAijsons)
 
     -- resizing
-    FrameAysons:SetResizable(true)
-    FrameAysons:SetResizeBounds(150, 100)
-    local ButtonAysons = CreateFrame("Button", "AysonsResizeButton", FrameAysons)
-    ButtonAysons:SetPoint("BOTTOMRIGHT", -6, 7)
-    ButtonAysons:SetSize(16, 16)
+    FrameAijsons:SetResizable(true)
+    FrameAijsons:SetResizeBounds(150, 100)
+    local ButtonAijsons = CreateFrame("Button", "AijsonsResizeButton", FrameAijsons)
+    ButtonAijsons:SetPoint("BOTTOMRIGHT", -6, 7)
+    ButtonAijsons:SetSize(16, 16)
 
-    ButtonAysons:SetNormalTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Up")
-    ButtonAysons:SetHighlightTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Highlight")
-    ButtonAysons:SetPushedTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Down")
+    ButtonAijsons:SetNormalTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Up")
+    ButtonAijsons:SetHighlightTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Highlight")
+    ButtonAijsons:SetPushedTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Down")
 
-    ButtonAysons:SetScript("OnMouseDown", function(self, button)
+    ButtonAijsons:SetScript("OnMouseDown", function(self, button)
         if button == "LeftButton" then
-            FrameAysons:StartSizing("BOTTOMRIGHT")
+            FrameAijsons:StartSizing("BOTTOMRIGHT")
             self:GetHighlightTexture():Hide() -- more noticeable
         end
     end)
-    ButtonAysons:SetScript("OnMouseUp", function(self, button)
-        FrameAysons:StopMovingOrSizing()
+    ButtonAijsons:SetScript("OnMouseUp", function(self, button)
+        FrameAijsons:StopMovingOrSizing()
         self:GetHighlightTexture():Show()
-        EditBoxAysons:SetWidth(ScrollFrameAysons:GetWidth())
+        EditBoxAijsons:SetWidth(ScrollFrameAijsons:GetWidth())
 
         -- save size between sessions
-        frameConfig.width = FrameAysons:GetWidth()
-        frameConfig.height = FrameAysons:GetHeight()
+        frameConfig.width = FrameAijsons:GetWidth()
+        frameConfig.height = FrameAijsons:GetHeight()
     end)
 
-    AysonsFrame = f
+    AijsonsFrame = f
   end
-  AysonsEditBox:SetText(text)
-  AysonsEditBox:HighlightText()
-  return AysonsFrame
+  AijsonsEditBox:SetText(text)
+  AijsonsEditBox:HighlightText()
+  return AijsonsFrame
 end
 
 
@@ -743,7 +743,7 @@ local function MYMOUNTS(INPUTSRING)
     for _ in pairs(InputArray) do count = count + 1 end
     if count < 4 then
 
-        print("|cff8788EEAysons|r missing argument for mymounts\n|cffFFFF00/MYMOUNTS swimming, dragon, flying, groud|r")
+        print("|cff8788EEAijsons|r missing argument for mymounts\n|cffFFFF00/MYMOUNTS swimming, dragon, flying, groud|r")
         return
     end
 
