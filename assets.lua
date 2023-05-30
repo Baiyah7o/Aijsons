@@ -6,11 +6,11 @@ local LSM3 = LibStub("LibSharedMedia-3.0", true)
 local LSM2 = LibStub("LibSharedMedia-2.0", true)
 local SML = LibStub("SharedMedia-1.0", true)
 
-Aijson = {}
+Aijsons = {}
 
-Aijson.registry = { ["font"] = {} }
+Aijsons.registry = { ["font"] = {} }
 
-function Aijson:Register(mediatype, key, data, langmask)
+function Aijsons:Register(mediatype, key, data, langmask)
 	if LSM3 then
 		LSM3:Register(mediatype, key, data, langmask)
 	end
@@ -20,17 +20,17 @@ function Aijson:Register(mediatype, key, data, langmask)
 	if SML then
 		SML:Register(mediatype, key, data)
 	end
-	if not Aijson.registry[mediatype] then
-		Aijson.registry[mediatype] = {}
+	if not Aijsons.registry[mediatype] then
+		Aijsons.registry[mediatype] = {}
 	end
-	table.insert(Aijson.registry[mediatype], { key, data, langmask})
+	table.insert(Aijsons.registry[mediatype], { key, data, langmask})
 end
 
-function Aijson.OnEvent(this, event, ...)
+function Aijsons.OnEvent(this, event, ...)
 	if not LSM3 then
 		LSM3 = LibStub("LibSharedMedia-3.0", true)
 		if LSM3 then
-			for m,t in pairs(Aijson.registry) do
+			for m,t in pairs(Aijsons.registry) do
 				for _,v in ipairs(t) do
 					LSM3:Register(m, v[1], v[2], v[3])
 				end
@@ -40,7 +40,7 @@ function Aijson.OnEvent(this, event, ...)
 	if not LSM2 then
 		LSM2 = LibStub("LibSharedMedia-2.0", true)
 		if LSM2 then
-			for m,t in pairs(Aijson.registry) do
+			for m,t in pairs(Aijsons.registry) do
 				for _,v in ipairs(t) do
 					LSM2:Register(m, v[1], v[2])
 				end
@@ -50,7 +50,7 @@ function Aijson.OnEvent(this, event, ...)
 	if not SML then
 		SML = LibStub("SharedMedia-1.0", true)
 		if SML then
-			for m,t in pairs(Aijson.registry) do
+			for m,t in pairs(Aijsons.registry) do
 				for _,v in ipairs(t) do
 					SML:Register(m, v[1], v[2])
 				end
@@ -59,9 +59,9 @@ function Aijson.OnEvent(this, event, ...)
 	end
 end
 
-Aijson.frame = CreateFrame("Frame")
-Aijson.frame:SetScript("OnEvent", Aijson.OnEvent)
-Aijson.frame:RegisterEvent("ADDON_LOADED")
+Aijsons.frame = CreateFrame("Frame")
+Aijsons.frame:SetScript("OnEvent", Aijsons.OnEvent)
+Aijsons.frame:RegisterEvent("ADDON_LOADED")
 
 
 --[[
@@ -82,24 +82,24 @@ pb_ee1
 
 -- registrations for media from the client itself belongs in LibSharedMedia-3.0
 
-if not Aijson then return end
+if not Aijsons then return end
 
 -- -----
 -- FONT
 -- -----
 
-Aijson:Register("font", "Cantarell Bold", [[Interface\Addons\Aijson\Fonts\Cantarell-Bold.otf]])
-Aijson:Register("font", "Cantarell ExtraBold", [[Interface\Addons\Aijson\Fonts\Cantarell-ExtraBold.otf]])
-Aijson:Register("font", "Cantarell Light", [[Interface\Addons\Aijson\Fonts\Cantarell-Light.otf]])
-Aijson:Register("font", "Cantarell Regular", [[Interface\Addons\Aijson\Fonts\Cantarell-Regular.otf]])
-Aijson:Register("font", "Cantarell Thin", [[Interface\Addons\Aijson\Fonts\Cantarell-Thin.otf]])
-Aijson:Register("font", "Cantarell VF", [[Interface\Addons\Aijson\Fonts\Cantarell-VF.otf]])
+Aijsons:Register("font", "Cantarell Bold", [[Interface\Addons\Aijsons\Fonts\Cantarell-Bold.otf]])
+Aijsons:Register("font", "Cantarell ExtraBold", [[Interface\Addons\Aijsons\Fonts\Cantarell-ExtraBold.otf]])
+Aijsons:Register("font", "Cantarell Light", [[Interface\Addons\Aijsons\Fonts\Cantarell-Light.otf]])
+Aijsons:Register("font", "Cantarell Regular", [[Interface\Addons\Aijsons\Fonts\Cantarell-Regular.otf]])
+Aijsons:Register("font", "Cantarell Thin", [[Interface\Addons\Aijsons\Fonts\Cantarell-Thin.otf]])
+Aijsons:Register("font", "Cantarell VF", [[Interface\Addons\Aijsons\Fonts\Cantarell-VF.otf]])
 
-Aijson:Register("statusbar", "Flat", [[Interface\Addons\Aijson\Statusbar\flat.tga]])
-Aijson:Register("statusbar", "MyBarForward", [[Interface\Addons\Aijson\Statusbar\mybar_forward.tga]])
-Aijson:Register("statusbar", "MyBarReverse", [[Interface\Addons\Aijson\Statusbar\mybar_reverse.tga]])
-Aijson:Register("statusbar", "TitanPanelBackgroundBottom", [[Interface\Addons\Aijson\Statusbar\TitanPanelBackgroundBottom0.tga]])
-Aijson:Register("statusbar", "TitanPanelBackgroundTop", [[Interface\Addons\Aijson\Statusbar\TitanPanelBackgroundTop0.tga]])
+Aijsons:Register("statusbar", "Flat", [[Interface\Addons\Aijsons\Statusbar\flat.tga]])
+Aijsons:Register("statusbar", "MyBarForward", [[Interface\Addons\Aijsons\Statusbar\mybar_forward.tga]])
+Aijsons:Register("statusbar", "MyBarReverse", [[Interface\Addons\Aijsons\Statusbar\mybar_reverse.tga]])
+Aijsons:Register("statusbar", "TitanPanelBackgroundBottom", [[Interface\Addons\Aijsons\Statusbar\TitanPanelBackgroundBottom0.tga]])
+Aijsons:Register("statusbar", "TitanPanelBackgroundTop", [[Interface\Addons\Aijsons\Statusbar\TitanPanelBackgroundTop0.tga]])
 
 Aijsons:Register("sound", "Aijsons, 10", [[Interface\Addons\Aijsons\Sound\10.ogg]])
 Aijsons:Register("sound", "Aijsons, 1", [[Interface\Addons\Aijsons\Sound\1.ogg]])
