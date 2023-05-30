@@ -1,7 +1,7 @@
 ## Interface: 100010
-## Title: 	  Aijsons
+## Title:     Aijsons
 ## Version:   @project-version@
-## Notes:  	  Personal settings and macros
+## Notes:     Personal settings and macros
 ## Author:    Baiyah7o
 
 ## DefaultState: enabled
