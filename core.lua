@@ -29,7 +29,7 @@ ExtraActionButton1.HotKey:Show()
 -- Target settings
 
 SetCVar("FindYourselfAnywhere", "0")
-SetCVar("SoftTargetEnemy", "3")        --  0 off, 1 gamepad 2 kbm, 3 always
+SetCVar("SoftTargetEnemy", "0")        --  0 off, 1 gamepad 2 kbm, 3 always
 SetCVar("SoftTargetEnemyArc", "1")     --  0 none, 1 in front, 2 in target arrea
 
 -- Spellqueue
@@ -57,28 +57,39 @@ SetCVar("RAIDweatherDensity", 0)
 -- SetCVar("myProfessionBar", 0)
 
 
--- Item tooltip based on codger-AeriePeak
--- and on Item Level by powerhandlar@entw.eu
--- License: Public Domain
-
 local function Add_Item_Id(tooltip)
-    local _, itemLink = tooltip:GetItem()
+    local itemLink = TooltipUtil.GetDisplayedItem(tooltip)
     if (itemLink ~= nil) then
-        local itemId, _, _, _, _, _, _ = GetItemInfoInstant(itemLink)
+        local itemId, _, _, _, icon, _, _ = GetItemInfoInstant(itemLink)
+         -- itemID, itemType, itemSubType, itemEquipLoc, icon, classID, subclassID
         if itemId then 
-            tooltip:AddDoubleLine("|c00ffd800Item ID|r", "|c00FFFFFF"..itemId.."|r", 1, 1, 1)
             local count = GetItemCount(itemId)
             local totalcount = GetItemCount(itemId,true)
-            tooltip:AddDoubleLine("|c00ffd800Bag amount|r", "|c00FFFFFF"..count.."|r", 1, 1, 1)
-            if (count ~= totalcount) then
-                tooltip:AddDoubleLine("|c00ffd800Bank|r", "|c00FFFFFF"..(totalcount - count).."|r", 1, 1, 1)
-                tooltip:AddDoubleLine("|c00ffd800Total|r", "|c00FFFFFF"..(totalcount).."|r", 1, 1, 1)
-             end
+            left = NORMAL_FONT_COLOR_CODE .. "Item ID" .. FONT_COLOR_CODE_CLOSE
+            right = HIGHLIGHT_FONT_COLOR_CODE .. itemId .. FONT_COLOR_CODE_CLOSE
+            tooltip:AddDoubleLine(left, right)
+            left = NORMAL_FONT_COLOR_CODE .. "Icon ID" .. FONT_COLOR_CODE_CLOSE
+            right = HIGHLIGHT_FONT_COLOR_CODE .. icon .. FONT_COLOR_CODE_CLOSE
+            tooltip:AddDoubleLine(left, right)
+            if (count ~= 1) then
+                left = NORMAL_FONT_COLOR_CODE .. "Bags" .. FONT_COLOR_CODE_CLOSE
+                right = HIGHLIGHT_FONT_COLOR_CODE .. count .. FONT_COLOR_CODE_CLOSE
+                tooltip:AddDoubleLine(left, right)
+            elseif (count ~= totalcount) then
+                left = NORMAL_FONT_COLOR_CODE .. "Bank" .. FONT_COLOR_CODE_CLOSE
+                right = HIGHLIGHT_FONT_COLOR_CODE .. (totalcount - count) .. FONT_COLOR_CODE_CLOSE
+                tooltip:AddDoubleLine(left, right)
+                left = NORMAL_FONT_COLOR_CODE .. "Total" .. FONT_COLOR_CODE_CLOSE
+                right = HIGHLIGHT_FONT_COLOR_CODE .. (totalcount) .. FONT_COLOR_CODE_CLOSE
+                tooltip:AddDoubleLine(left, right)
+            end
         end
     end
 end
 
 TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Item, Add_Item_Id)
+
+
 
 
 
@@ -316,11 +327,11 @@ local function ToggleMyRaidSet()
         if IsMounted() then     -- just toggle self highlight and action target
             if GetCVar("FindYourselfAnywhere") == "1" then 
                 SetCVar("FindYourselfAnywhere", "0")
-                 SetCVar("SoftTargetEnemy", "3")        --  0 off, 1 gamepad 2 kbm, 3 always
+                 SetCVar("SoftTargetEnemy", "0")        --  0 off, 1 gamepad 2 kbm, 3 always
                  SetCVar("SoftTargetEnemyArc", "1")     --  0 none, 1 in front, 2 in target arrea
             else
                 SetCVar("FindYourselfAnywhere", "1")
-                SetCVar("SoftTargetEnemy", "3")
+                SetCVar("SoftTargetEnemy", "0")
                 SetCVar("SoftTargetEnemyArc", "1")
             end
         else
@@ -331,14 +342,14 @@ local function ToggleMyRaidSet()
                 BarNumber.ActionBars:PositionAndSizeBar("bar"..n);
                 if BarNumber.db.actionbar["bar"..n].enabled == true then
                     SetCVar("FindYourselfAnywhere", "1")
-                    SetCVar("SoftTargetEnemy", "3")
+                    SetCVar("SoftTargetEnemy", "0")
                     SetCVar("SoftTargetEnemyArc", "1")
                     local bars, E = {15}, unpack(ElvUI);
                     E.db.actionbar["bar"..15].enabled = false;
                     E.ActionBars:PositionAndSizeBar("bar"..15);
                 else
                     SetCVar("FindYourselfAnywhere", "0")
-                    SetCVar("SoftTargetEnemy", "3")
+                    SetCVar("SoftTargetEnemy", "0")
                     SetCVar("SoftTargetEnemyArc", "1")
                 end
             end
@@ -353,7 +364,7 @@ local function ToggleMyRaidSet()
             end
             -- SetCVar("myRaidBar", "1")
             SetCVar("FindYourselfAnywhere", "1")
-            SetCVar("SoftTargetEnemy", "3")
+            SetCVar("SoftTargetEnemy", "0")
             SetCVar("SoftTargetEnemyArc", "1")
         else
             if not UnitAffectingCombat("player") then
@@ -361,7 +372,7 @@ local function ToggleMyRaidSet()
             end
             -- SetCVar("myRaidBar", "0")
             SetCVar("FindYourselfAnywhere", "0")
-            SetCVar("SoftTargetEnemy", "3")
+            SetCVar("SoftTargetEnemy", "0")
             SetCVar("SoftTargetEnemyArc", "1")
         end
     end 
@@ -379,7 +390,7 @@ local function ToggleMyPROFESSIONSet()
     if IsAddOnLoaded("ElvUI") then
 -- ElvUI
         SetCVar("FindYourselfAnywhere", "0")
-        SetCVar("SoftTargetEnemy", "3")
+        SetCVar("SoftTargetEnemy", "0")
         SetCVar("SoftTargetEnemyArc", "1")
         local Bars, BarNumber = {15}, unpack(ElvUI); 
         for _, n in pairs(Bars) do 
