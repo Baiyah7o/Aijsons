@@ -331,7 +331,7 @@ local function ToggleMyRaidSet()
                  SetCVar("SoftTargetEnemyArc", "1")     --  0 none, 1 in front, 2 in target arrea
             else
                 SetCVar("FindYourselfAnywhere", "1")
-                SetCVar("SoftTargetEnemy", "0")
+                SetCVar("SoftTargetEnemy", "3")
                 SetCVar("SoftTargetEnemyArc", "1")
             end
         else
@@ -342,7 +342,7 @@ local function ToggleMyRaidSet()
                 BarNumber.ActionBars:PositionAndSizeBar("bar"..n);
                 if BarNumber.db.actionbar["bar"..n].enabled == true then
                     SetCVar("FindYourselfAnywhere", "1")
-                    SetCVar("SoftTargetEnemy", "0")
+                    SetCVar("SoftTargetEnemy", "3")
                     SetCVar("SoftTargetEnemyArc", "1")
                     local bars, E = {15}, unpack(ElvUI);
                     E.db.actionbar["bar"..15].enabled = false;
@@ -364,7 +364,7 @@ local function ToggleMyRaidSet()
             end
             -- SetCVar("myRaidBar", "1")
             SetCVar("FindYourselfAnywhere", "1")
-            SetCVar("SoftTargetEnemy", "0")
+            SetCVar("SoftTargetEnemy", "3")
             SetCVar("SoftTargetEnemyArc", "1")
         else
             if not UnitAffectingCombat("player") then
